@@ -16,7 +16,7 @@ export default function App() {
   return (
     <>
       <div className="heading">
-        <h1>Welcome to the Metawork Wallet</h1>
+        <h1>Welcome to the Metawork Portal</h1>
       </div>
       <WalletAddressButton
         accountAddress={accountAddress}

@@ -17,7 +17,7 @@ export default function Homepage() {
         <h1>Homepage</h1>
       </div>
       <div>
-        <AuthTokenButton />
+        <AuthTokenButton walletAddress={accountAddress} />
       </div>
       <WalletAddressButton
         accountAddress={accountAddress}

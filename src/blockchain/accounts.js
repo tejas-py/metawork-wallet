@@ -89,7 +89,7 @@ export async function authTokenInfo(walletAddress) {
       const amount = assetInfo.asset.params.total
 
       // All the auth token conditions
-      const metaWorkAddress = process.env.METAWORK_ADDRESS
+      const metaWorkAddress = 'IXQXUPYYLCQIOYSVNLGKVC7PANRHLHKOML5HACB6EM7GM4GM4S6ZTEFECY'
       const authTokenConditions =
         assetName === 'METAWORK-AUTH-TOKEN' &&
         assetSymbol === 'MAT' &&
