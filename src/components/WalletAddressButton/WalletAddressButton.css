@@ -1,0 +1,38 @@
+/* Style for the disconnected button when it's inactive */
+.wallet-button:disabled {
+    background-color: #999999; /* Subtle grey for inactive state */
+    color: #ffffff; /* Adjust text color for inactive state as needed */
+    border: none;
+    padding: 11px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: not-allowed;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+/* Style for the disconnected button when it's active */
+.wallet-button {
+background-color: #172d48; /* Subtle grey for active state */
+color: rgb(255, 255, 255);
+border: none;
+padding: 11px 32px;
+text-align: center;
+display: inline-block;
+font-size: 20px;
+margin: 4px 2px;
+cursor: pointer;
+border-radius: 10px;
+position: absolute;
+top: 10px;
+right: 10px;
+transition: background-color 0.3s ease;
+}
+
+.wallet-button:hover {
+background-color: #000000; /* Lighter shade for hover effect */
+}
