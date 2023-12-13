@@ -24,7 +24,6 @@ export default function App() {
         handleDisconnectWalletClick={handleDisconnectWalletClick}
       />
       <HandleLogin
-        walletClient={peraWallet}
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         handleConnectWalletClick={handleConnectWalletClick}
         walletAddress={accountAddress}

@@ -13,11 +13,14 @@ import reportWebVitals from './reportWebVitals'
 // Routes
 import Layout from './Layout'
 import Homepage from './components/Homepage'
+import CreateAuthToken from './components/CreateAuthToken'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<App />} />
       <Route path="homepage" element={<Homepage />} />
+      <Route path="createAuthToken" element={<CreateAuthToken />} />
     </Route>
   )
 )

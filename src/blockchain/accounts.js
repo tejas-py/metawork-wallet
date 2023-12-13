@@ -9,12 +9,17 @@ export async function checkAuthToken(walletAddress) {
 
     // Check the total number of assets
     let totalAssets
-    if (assets.length) {
-      totalAssets = assets.length
-    } else {
-      totalAssets = 0
-      return false
+    try {
+      if (assets) {
+        totalAssets = assets.length
+      } else {
+        totalAssets = 0
+        return false
+      }
+    } catch (e) {
+      console.log(e)
     }
+
     let notAuthToken = 0
 
     // Get the assets info
@@ -34,7 +39,7 @@ export async function checkAuthToken(walletAddress) {
       // All the auth token conditions
       const metaWorkAddress = 'IXQXUPYYLCQIOYSVNLGKVC7PANRHLHKOML5HACB6EM7GM4GM4S6ZTEFECY'
       const authTokenConditions =
-        assetName === 'METAWORK-AUTH-TOKEN' &&
+        assetName === 'ETAWORK-AUTH-TOKEN' &&
         assetSymbol === 'MAT' &&
         createdAddress === walletAddress &&
         clawbackAddress === metaWorkAddress &&

@@ -24,3 +24,41 @@
   .login-button:hover {
     background-color: #66bb6a; /* Lighter shade for hover effect */
   }
+
+  .middle-container {
+    background-color: white; /* White background */
+    border: 0.5px solid black;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 50px; /* Padding inside the container */
+    text-align: center; /* Center text alignment */
+    max-width: 900px; /* Maximum width of the container */
+    margin: auto; /* Center the container on the page */
+    margin-top: 210px; /* Space from the top of the page */
+  }
+  
+  /* Text Style inside the container */
+  .middle-container p {
+    margin-bottom: 20px; /* Space between the text and the button */
+    font-size: 30px; /* Text size */
+    color: #333; /* Text color */
+  }
+  
+
+  .middle-container button {
+    background-color: #b5d7a8;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 11px 75px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+  }
+
+  .middle-container button:hover {
+    background-color: #66bb6a; /* Lighter shade for hover effect */
+  }
