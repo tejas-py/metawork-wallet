@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import { checkAuthToken } from '../../blockchain/accounts'
 import { create } from '../../blockchain/authToken'
 import signTxn from '../../wallet/signTxn'
@@ -18,9 +18,9 @@ async function authToken(walletClient, walletAddress, navigate) {
   const res = await checkAuthToken(walletAddress)
 
   if (res) {
-    navigate('/homepage');
+    navigate('/homepage')
   }
-  
+
   if (!res) {
     const txnId = await mintMyNFT(walletClient, walletAddress)
     return txnId
@@ -33,20 +33,31 @@ export default function HandleLogin({
   handleConnectWalletClick,
   walletAddress,
 }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  function DisplayText() {
+    if (isConnectedToPeraWallet) {
+      return <p>Click here to login</p>
+    } else {
+      return <p>Click to connect to your wallet</p>
+    }
+  }
 
   return (
     <div className="login-container">
-      <button
-        onClick={
-          isConnectedToPeraWallet
-            ? () => authToken(walletClient, walletAddress, navigate)
-            : handleConnectWalletClick
-        }
-        className="login-button"
-      >
-        {isConnectedToPeraWallet ? 'Login' : 'Connect'}
-      </button>
+      <DisplayText />
+      <div>
+        <button
+          onClick={
+            isConnectedToPeraWallet
+              ? () => authToken(walletClient, walletAddress, navigate)
+              : handleConnectWalletClick
+          }
+          className="login-button"
+        >
+          {isConnectedToPeraWallet ? 'Login' : 'Connect'}
+        </button>
+      </div>
     </div>
   )
 }
