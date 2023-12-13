@@ -39,7 +39,7 @@ export async function checkAuthToken(walletAddress) {
       // All the auth token conditions
       const metaWorkAddress = 'IXQXUPYYLCQIOYSVNLGKVC7PANRHLHKOML5HACB6EM7GM4GM4S6ZTEFECY'
       const authTokenConditions =
-        assetName === 'ETAWORK-AUTH-TOKEN' &&
+        assetName === 'METAWORK-AUTH-TOKEN' &&
         assetSymbol === 'MAT' &&
         createdAddress === walletAddress &&
         clawbackAddress === metaWorkAddress &&
