@@ -2,17 +2,18 @@ import React from 'react'
 import './WalletAddressButton.css'
 
 export default function WalletAddressButton({
+  accountAddress,
   isConnectedToPeraWallet,
-  walletAddress,
   handleDisconnectWalletClick,
 }) {
-  const [isHovering, setIsHovering] = React.useState(false)
+  // const navigate = useNavigate()
 
-  const hoverText = isConnectedToPeraWallet ? walletAddress : 'Wallet not connected'
+  const [isHovering, setIsHovering] = React.useState(false)
+  const hoverText = isConnectedToPeraWallet ? accountAddress : 'Wallet not connected'
   const buttonText = isConnectedToPeraWallet
     ? isHovering
       ? 'Disconnect'
-      : `${walletAddress.slice(0, 10)}...`
+      : `${accountAddress.slice(0, 10)}...`
     : 'Disconnect'
 
   return (
