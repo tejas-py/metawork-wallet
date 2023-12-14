@@ -1,21 +1,18 @@
 import React from 'react'
-import WalletAddressButton from './WalletAddressButton/WalletAddressButton.js'
-import PeraWallet from './PeraWallet/PeraWallet.js'
-import { create } from '../blockchain/authToken'
-import signTxn from '../wallet/signTxn'
-import sendTxn from '../wallet/sendTxn'
-import './HandleLogin/HandleLogin.css'
-
-async function mintMyNFT(walletClient, walletAddress) {
-  const txn = await create(walletAddress)
-  const signedTxn = await signTxn(walletClient, txn)
-  const txId = await sendTxn(signedTxn)
-  return txId
-}
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
+import MintMyNFT from './MintMyNFT.js'
+import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
+import PeraWallet from '../PeraWallet/PeraWallet.js'
+import '../HandleLogin/HandleLogin.css'
 
 export default function CreateAuthToken() {
   const [nftMinted, setNftMinted] = React.useState(false)
   const [nftTxnId, setNftTxnId] = React.useState('')
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [peraWallet, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] =
     PeraWallet()
@@ -39,11 +36,13 @@ export default function CreateAuthToken() {
             </p>
             <button
               onClick={async () => {
-                const txn = await mintMyNFT(peraWallet, accountAddress)
+                dispatch(toggleAppLoading(true))
+                const txn = await MintMyNFT(peraWallet, accountAddress)
                 if (txn) {
                   setNftTxnId(txn)
                   setNftMinted(true)
                 }
+                dispatch(toggleAppLoading(false))
               }}
             >
               Mint my NFT
@@ -55,6 +54,7 @@ export default function CreateAuthToken() {
             <button
               onClick={() => {
                 window.open(`https://testnet.algoexplorer.io/tx/${nftTxnId}`, '_blank')
+                navigate('/dashboard')
               }}
             >
               View NFT

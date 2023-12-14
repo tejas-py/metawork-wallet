@@ -17,7 +17,7 @@ export async function checkAuthToken(walletAddress) {
         return false
       }
     } catch (e) {
-      console.log(e)
+      console.log('error:', e)
     }
 
     let notAuthToken = 0

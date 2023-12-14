@@ -1,17 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { checkAuthToken } from '../../blockchain/accounts'
+import HandleAuthToken from './HandleAuthToken.js'
 import './HandleLogin.css'
-
-async function authToken(walletAddress, navigate) {
-  const res = await checkAuthToken(walletAddress)
-  if (res) {
-    navigate('/dashboard')
-  }
-  if (!res) {
-    navigate('/createAuthToken')
-  }
-}
 
 export default function HandleLogin({
   isConnectedToPeraWallet,
@@ -35,7 +25,9 @@ export default function HandleLogin({
         <button
           onClick={
             isConnectedToPeraWallet
-              ? () => authToken(walletAddress, navigate)
+              ? async () => {
+                  await HandleAuthToken(walletAddress, navigate)
+                }
               : handleConnectWalletClick
           }
           className="login-button"

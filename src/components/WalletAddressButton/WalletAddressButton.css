@@ -11,8 +11,8 @@
     cursor: not-allowed;
     border-radius: 10px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 30px;
+    right: 30px;
   }
   
 /* Style for the disconnected button when it's active */
@@ -28,8 +28,8 @@ margin: 4px 2px;
 cursor: pointer;
 border-radius: 10px;
 position: absolute;
-top: 10px;
-right: 10px;
+top: 30px;
+right: 30px;
 transition: background-color 0.3s ease;
 }
 

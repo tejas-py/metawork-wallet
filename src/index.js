@@ -9,11 +9,13 @@ import {
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 // Routes
 import Layout from './Layout'
-import Dashboard from './components/Dashboard'
-import CreateAuthToken from './components/CreateAuthToken'
+import Dashboard from './components/Dashboard/Dashboard'
+import CreateAuthToken from './components/CreateAuthToken/CreateAuthToken'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +30,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 )
 
