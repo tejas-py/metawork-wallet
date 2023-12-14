@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
 import MintMyNFT from './MintMyNFT.js'
 import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
+import { checkAuthToken } from '../../blockchain/accounts'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
 import '../HandleLogin/HandleLogin.css'
 
@@ -16,6 +17,16 @@ export default function CreateAuthToken() {
 
   const [peraWallet, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] =
     PeraWallet()
+
+  React.useEffect(() => {
+    const verifyToken = async () => {
+      const res = await checkAuthToken(accountAddress)
+      if (res) {
+        navigate('/dashboard')
+      }
+    }
+    verifyToken()
+  }, [navigate, accountAddress])
 
   return (
     <>

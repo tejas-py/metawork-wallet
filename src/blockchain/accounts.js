@@ -58,8 +58,7 @@ export async function checkAuthToken(walletAddress) {
       }
     }
   } catch (e) {
-    console.error(e)
-    throw e
+    console.log(e)
   }
 }
 
@@ -114,7 +113,6 @@ export async function authTokenInfo(walletAddress) {
       }
     }
   } catch (e) {
-    console.error(e)
-    throw e
+    console.log(e)
   }
 }
