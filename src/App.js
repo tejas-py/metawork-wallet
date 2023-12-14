@@ -6,7 +6,7 @@ import './App.css'
 
 export default function App() {
   const [
-    peraWallet,
+    ,
     accountAddress,
     isConnectedToPeraWallet,
     handleConnectWalletClick,

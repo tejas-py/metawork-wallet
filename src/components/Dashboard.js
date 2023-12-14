@@ -1,20 +1,14 @@
 import React from 'react'
-import AuthTokenButton from './AuthTokenButton/AuthTokenButton'
+import AuthTokenButton from './AuthTokenButton/AuthTokenButton.js'
 import WalletAddressButton from './WalletAddressButton/WalletAddressButton.js'
 import PeraWallet from './PeraWallet/PeraWallet.js'
 
-export default function Homepage() {
-  const [
-    peraWallet,
-    accountAddress,
-    isConnectedToPeraWallet,
-    handleConnectWalletClick,
-    handleDisconnectWalletClick,
-  ] = PeraWallet()
+export default function Dashboard() {
+  const [, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] = PeraWallet()
   return (
     <>
       <div className="heading">
-        <h1>Homepage</h1>
+        <h1>User Dashboard</h1>
       </div>
       <div>
         <AuthTokenButton walletAddress={accountAddress} />

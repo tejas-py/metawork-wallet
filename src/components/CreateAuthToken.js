@@ -17,13 +17,8 @@ export default function CreateAuthToken() {
   const [nftMinted, setNftMinted] = React.useState(false)
   const [nftTxnId, setNftTxnId] = React.useState('')
 
-  const [
-    peraWallet,
-    accountAddress,
-    isConnectedToPeraWallet,
-    handleConnectWalletClick,
-    handleDisconnectWalletClick,
-  ] = PeraWallet()
+  const [peraWallet, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] =
+    PeraWallet()
 
   return (
     <>

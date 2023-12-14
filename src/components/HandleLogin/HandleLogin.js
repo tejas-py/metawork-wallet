@@ -6,7 +6,7 @@ import './HandleLogin.css'
 async function authToken(walletAddress, navigate) {
   const res = await checkAuthToken(walletAddress)
   if (res) {
-    navigate('/homepage')
+    navigate('/dashboard')
   }
   if (!res) {
     navigate('/createAuthToken')
