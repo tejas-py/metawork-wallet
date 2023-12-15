@@ -25,12 +25,6 @@ export default function CreateAuthToken() {
         navigate('/dashboard')
       }
     }
-    const verifyWalletConnect = async () => {
-      if (!isConnectedToPeraWallet) {
-        navigate('/')
-      }
-    }
-    verifyWalletConnect()
     verifyToken()
   }, [navigate, accountAddress, isConnectedToPeraWallet])
 

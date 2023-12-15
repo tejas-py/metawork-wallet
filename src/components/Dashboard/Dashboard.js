@@ -1,21 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import AuthTokenButton from '../AuthTokenButton/AuthTokenButton.js'
 import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
 
 export default function Dashboard() {
   const [, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] = PeraWallet()
-  const navigate = useNavigate()
-
-  React.useEffect(() => {
-    const verifyWalletConnect = async () => {
-      if (!isConnectedToPeraWallet) {
-        navigate('/')
-      }
-    }
-    verifyWalletConnect()
-  }, [navigate, accountAddress, isConnectedToPeraWallet])
 
   return (
     <>
@@ -30,6 +20,7 @@ export default function Dashboard() {
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         handleDisconnectWalletClick={handleDisconnectWalletClick}
       />
+      <Outlet />
     </>
   )
 }

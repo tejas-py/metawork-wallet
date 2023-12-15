@@ -4,7 +4,7 @@ import HandleLogin from './HandleLogin.js'
 import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
 import '../../App.css'
 
-export default function App() {
+export default function Login() {
   const [
     ,
     accountAddress,

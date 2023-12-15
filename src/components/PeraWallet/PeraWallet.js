@@ -1,11 +1,13 @@
 import React from 'react'
 import { PeraWalletConnect } from '@perawallet/connect'
+import { useNavigate } from 'react-router-dom'
 
 const peraWallet = new PeraWalletConnect()
 
 export default function PeraWallet() {
   const [accountAddress, setAccountAddress] = React.useState(null)
   const isConnectedToPeraWallet = !!accountAddress
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     // Reconnect to the session when the component is mounted
@@ -13,13 +15,20 @@ export default function PeraWallet() {
       .reconnectSession()
       .then((accounts) => {
         peraWallet.connector.on('disconnect', handleDisconnectWalletClick)
-
+        console.log('IM HIT TO CONNECT WALLET AGAIN')
         if (accounts.length) {
           setAccountAddress(accounts[0])
         }
       })
       .catch((e) => console.log(e))
-  }, [accountAddress])
+    // Redirect to home page if wallet is not connected
+    const verifyWalletConnect = () => {
+      if (!peraWallet.isConnected) {
+        navigate('/')
+      }
+    }
+    verifyWalletConnect()
+  }, [navigate])
 
   function handleConnectWalletClick() {
     peraWallet
