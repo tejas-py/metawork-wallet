@@ -1,8 +1,8 @@
 import React from 'react'
-import PeraWallet from './components/PeraWallet/PeraWallet.js'
-import HandleLogin from './components/HandleLogin/HandleLogin.js'
-import WalletAddressButton from './components/WalletAddressButton/WalletAddressButton.js'
-import './App.css'
+import PeraWallet from '../PeraWallet/PeraWallet.js'
+import HandleLogin from './HandleLogin.js'
+import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
+import '../../App.css'
 
 export default function App() {
   const [

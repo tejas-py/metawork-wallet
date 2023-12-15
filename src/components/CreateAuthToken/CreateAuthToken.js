@@ -6,7 +6,7 @@ import MintMyNFT from './MintMyNFT.js'
 import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
 import { checkAuthToken } from '../../blockchain/accounts'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
-import '../HandleLogin/HandleLogin.css'
+import '../Login/HandleLogin.css'
 
 export default function CreateAuthToken() {
   const [nftMinted, setNftMinted] = React.useState(false)

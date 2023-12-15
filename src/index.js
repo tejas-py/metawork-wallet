@@ -7,7 +7,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom'
 import './index.css'
-import App from './App'
+import Login from './components/Login/Login'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { store } from './store'
@@ -20,7 +20,7 @@ import CreateAuthToken from './components/CreateAuthToken/CreateAuthToken'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<App />} />
+      <Route path="" element={<Login />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="createAuthToken" element={<CreateAuthToken />} />
     </Route>
