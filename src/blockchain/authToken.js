@@ -1,4 +1,5 @@
 import { algod, indexer } from '../blockchain/algodClient'
+import msgPack from '@ygoe/msgpack'
 const algosdk = require('algosdk')
 
 export async function create(walletAddress) {
@@ -12,44 +13,64 @@ export async function create(walletAddress) {
     property: {
       holding_wallet: '',
       assets: {
-        123: {
-          amount: 1,
-          tradeHistory: [
-            {
-              tradeType: 'sell',
-              price: '123USDC',
-              timeStamp: '12/12/12 12:12:12',
-              amount: 100,
-              txID: 'ABCYEUS',
-            },
-            {
-              tradeType: 'buy',
-              price: '628USDC',
-              timeStamp: '12/12/12 12:12:22',
-              amount: 1000,
-              txId: 'XYJEJE',
-            },
-          ],
-        },
-        24234: {
-          amount: 1,
-          tradeHistory: [
-            {
-              tradeType: 'sell',
-              price: '123USDC',
-              timeStamp: '12/12/12 12:12:12',
-              amount: 100,
-              txID: 'ABCYEUS',
-            },
-            {
-              tradeType: 'buy',
-              price: '628USDC',
-              timeStamp: '12/12/12 12:12:22',
-              amount: 1000,
-              txId: 'XYJEJE',
-            },
-          ],
-        },
+        'Genopets': [
+          {
+            tradeType: 'buy',
+            pricePerAsset: 50.0,
+            timeStamp: '12/12/2012 12:25:12',
+            units: 10.0,
+          },
+          {
+            tradeType: 'buy',
+            pricePerAsset: 0.01,
+            timeStamp: '12/12/2022 12:12:22',
+            units: 100,
+          },
+        ],
+        'Synesis One': [
+          {
+            tradeType: 'buy',
+            pricePerAsset: 50.0,
+            timeStamp: '12/12/2012 12:25:12',
+            units: 10.0,
+          },
+          {
+            tradeType: 'sell',
+            pricePerAsset: 25.0,
+            timeStamp: '12/12/2012 12:24:12',
+            units: 20.0,
+          },
+          {
+            tradeType: 'sell',
+            pricePerAsset: 20.0,
+            timeStamp: '12/12/2012 12:23:12',
+            units: 55.0,
+          },
+          {
+            tradeType: 'sell',
+            pricePerAsset: 20.0,
+            timeStamp: '12/12/2012 12:22:12',
+            units: 20.0,
+          },
+          {
+            tradeType: 'buy',
+            pricePerAsset: 12.0,
+            timeStamp: '12/12/2012 12:21:12',
+            units: 5.0,
+          },
+          {
+            tradeType: 'sell',
+            pricePerAsset: 15.0,
+            timeStamp: '12/12/2012 12:20:12',
+            units: 10.0,
+          },
+          {
+            tradeType: 'buy',
+            pricePerAsset: 10.0,
+            timeStamp: '11/12/2012 12:12:22',
+            units: 100.0,
+          },
+        ],
       },
     },
   }
@@ -77,8 +98,6 @@ export async function create(walletAddress) {
 export async function authTokenDetails(assetId) {
   const indexerClient = await indexer()
   const res = await indexerClient.lookupAssetTransactions(assetId).do()
-
-  const decodedString = atob(res['transactions'][0]['note'])
-
-  return JSON.parse(decodedString)
+  const decodedString = msgPack.deserialize(Buffer.from(res['transactions'][0]['note'], 'base64'))
+  return decodedString
 }

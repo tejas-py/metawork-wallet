@@ -16,15 +16,12 @@ import { store } from './store'
 import Layout from './Layout'
 import CreateAuthToken from './components/CreateAuthToken/CreateAuthToken'
 import Dashboard from './components/Dashboard/Dashboard'
-import Assets from './components/Dashboard/Assets'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Login />} />
-      <Route path="dashboard" element={<Dashboard />}>
-        <Route path="" element={<Assets />} />
-      </Route>
+      <Route path="dashboard" element={<Dashboard />} />
       <Route path="createAuthToken" element={<CreateAuthToken />} />
     </Route>
   )

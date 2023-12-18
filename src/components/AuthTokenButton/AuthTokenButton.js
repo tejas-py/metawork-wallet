@@ -6,7 +6,7 @@ import './AuthTokenButton.css'
 
 async function assetId(walletAddress) {
   const assetinfo = await authTokenInfo(walletAddress)
-  window.open(`https://testnet.algoexplorer.io/asset/${assetinfo.assetId}`, '_blank')
+  window.open(`https://testnet.algoexplorer.io/asset/${assetinfo}`, '_blank')
 }
 
 export default function AuthTokenButton({ walletAddress }) {

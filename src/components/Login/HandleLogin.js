@@ -23,7 +23,6 @@ export default function HandleLogin({
 
   async function handleLoginClick() {
     if (isConnectedToPeraWallet) {
-      console.log('IM HIT TO CHECK THE AUTH TOKEN')
       await HandleAuthToken(walletAddress, navigate)
     } else {
       handleConnectWalletClick()
@@ -37,7 +36,6 @@ export default function HandleLogin({
         <button
           onClick={async () => {
             dispatch(toggleAppLoading(true))
-            console.log('IM HIT TO HANDLE LOGIN')
             await handleLoginClick()
             dispatch(toggleAppLoading(false))
           }}

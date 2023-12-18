@@ -15,7 +15,6 @@ export default function PeraWallet() {
       .reconnectSession()
       .then((accounts) => {
         peraWallet.connector.on('disconnect', handleDisconnectWalletClick)
-        console.log('IM HIT TO CONNECT WALLET AGAIN')
         if (accounts.length) {
           setAccountAddress(accounts[0])
         }

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
 import AuthTokenButton from '../AuthTokenButton/AuthTokenButton.js'
 import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
+import AssetsTable from './AssetsTable.js'
 
 export default function Dashboard() {
   const [, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] = PeraWallet()
@@ -20,7 +20,10 @@ export default function Dashboard() {
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         handleDisconnectWalletClick={handleDisconnectWalletClick}
       />
-      <Outlet />
+      <AssetsTable
+        isConnectedToPeraWallet={isConnectedToPeraWallet}
+        accountAddress={accountAddress}
+      />
     </>
   )
 }

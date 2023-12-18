@@ -1,4 +1,4 @@
-import { indexer } from '../blockchain/algodClient'
+import { indexer } from '../blockchain/algodClient.js'
 
 export async function checkAuthToken(walletAddress) {
   try {
@@ -100,11 +100,7 @@ export async function authTokenInfo(walletAddress) {
 
       // If conditions are met return true
       if (authTokenConditions) {
-        return {
-          assetName,
-          assetSymbol,
-          assetId,
-        }
+        return assetId
       } else {
         notAuthToken++
         if (notAuthToken === totalAssets) {
