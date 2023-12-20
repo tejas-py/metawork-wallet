@@ -52,7 +52,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
               <td>{asset.userAsset}</td>
               <td>{asset.balance}</td>
               <td>${asset.totalInvestment.toFixed(2)}</td>
-              <td>{asset.avgAssetPrice}</td>
+              <td>${asset.avgAssetPrice.toFixed(2)}</td>
               <td>
                 <button className="view-button" onClick={() => handleViewClick(asset)}>
                   View
