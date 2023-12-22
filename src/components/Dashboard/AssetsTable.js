@@ -40,9 +40,11 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
         <thead>
           <tr>
             <th>Asset</th>
+            <th>PRICE</th>
             <th>Balance</th>
             <th>Total Investment</th>
             <th>Avg Asset Price</th>
+            <th>Profit</th>
             <th>Trade History</th>
           </tr>
         </thead>
@@ -50,9 +52,11 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
           {assets.map((asset, index) => (
             <tr key={index}>
               <td>{asset.userAsset}</td>
+              <td>${(1 / asset.assetPrice).toFixed(6)}</td>
               <td>{asset.balance}</td>
               <td>${asset.totalInvestment.toFixed(2)}</td>
               <td>${asset.avgAssetPrice.toFixed(2)}</td>
+              <td>${((1 / asset.assetPrice - asset.avgAssetPrice) * asset.balance).toFixed(3)}</td>
               <td>
                 <button className="view-button" onClick={() => handleViewClick(asset)}>
                   View

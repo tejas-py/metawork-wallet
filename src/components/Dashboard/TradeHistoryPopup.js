@@ -21,6 +21,12 @@ export default function TradeHistoryPopup({ asset, onClose }) {
     return formattedTime
   }
 
+  const sortedTradeHistory = asset.tradeHistory
+    .slice() // Create a shallow copy
+    .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
+
+  console.log('sorted data:', sortedTradeHistory)
+
   return (
     <div className="popup">
       <div className="popup-content">
@@ -36,14 +42,17 @@ export default function TradeHistoryPopup({ asset, onClose }) {
               </tr>
             </thead>
             <tbody>
-              {asset.tradeHistory.map((trade, index) => (
-                <tr key={index}>
-                  <td>{trade.tradeType}</td>
-                  <td>{trade.units}</td>
-                  <td>${trade.pricePerAsset}</td>
-                  <td>{unixToTime(trade.timeStamp)}</td>
-                </tr>
-              ))}
+              {asset.tradeHistory
+                .slice() // Create a shallow copy of the array
+                .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp)) // Sort based on converted timeStamp
+                .map((trade, index) => (
+                  <tr key={index}>
+                    <td>{trade.tradeType}</td>
+                    <td>{trade.units}</td>
+                    <td>${trade.pricePerAsset}</td>
+                    <td>{unixToTime(trade.timeStamp)}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

@@ -57,6 +57,7 @@ table {
   padding: 1px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
   
   /* Close button styles */
@@ -68,9 +69,9 @@ table {
   padding: 13px 15px;
   border-radius: 50px;
   cursor: pointer;
-  position:absolute;
-  top: 280px;
-  right: 430px;
+  position: absolute; /* Position it absolutely */
+  top: -20px; /* Adjust as needed, negative value to move outside the container */
+  right: -20px; /* Adjust as needed, negative value to move outside the container */
 }
   
 .close-button:hover {
