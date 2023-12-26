@@ -14,7 +14,7 @@ function Layout() {
       {open && (
         <div
           style={{
-            color: '#fff',
+            color: '#F0F3FA',
             zIndex: '99999999999999',
             display: 'flex',
             justifyContent: 'center',
@@ -26,12 +26,12 @@ function Layout() {
             width: '100%',
             height: '100%',
             background: '#00000041',
-          }}
+          }}  
         >
           <Oval
             height={80}
             width={80}
-            color="#000000"
+            color="#395886"
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}
