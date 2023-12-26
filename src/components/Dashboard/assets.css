@@ -1,10 +1,10 @@
 .table-container {
   width: 80%;
-  margin: auto;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   border-radius: 8px;
   background-color: #fff;
+  align-self: center;
 }
 
 .popup-table-container {
@@ -24,7 +24,7 @@ table {
 .view-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #ffffff; /* Change the background color as desired */
+  background-color: #F0F3FA; /* Change the background color as desired */
   color: #000000; /* Text color */
   border: none;
   border-radius: 5px; /* Rounded corners */
@@ -36,7 +36,8 @@ table {
   
   /* Hover effect */
 .view-button:hover {
-  background-color: #aeaeae; /* Change the hover background color */
+  background-color: #d5deef; /* Change the hover background color */
+  color: #000000; /* Text color */
 }
 
 /* Popup styles */
@@ -53,7 +54,7 @@ table {
 }
   
 .popup-content {
-  background-color: #fff;
+  background-color: #F0F3FA;
   padding: 1px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -62,7 +63,7 @@ table {
   
   /* Close button styles */
 .close-button {
-  background-color: #ffffff;
+  background-color: #F0F3FA;
   color: #000000;
   border: #000000;
   border-style: solid;
@@ -82,31 +83,34 @@ table {
 }
 
 caption {
+  font-family: 'Roboto', sans-serif;
+  color: #638ECB;
   margin: 20px 0;
-  font-size: 1.5em;
-  font-weight: bold;
+  font-size: 20px;
   text-align: left;
   padding: 10px;
-  background-color: #eaeaea;
+  background-color: #d5deef;
 }
 
 th {
-  background-color: #172d48;
-  color: #ffffff;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #628ecb;
+  color: #F0F3FA;
   font-weight: normal;
   padding: 10px;
   text-align: left;
 }
 
 td {
+  font-family: 'Roboto', sans-serif;
   padding: 10px;
   border-bottom: 1px solid #dddddd;
 }
-
+/* 
 tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
+  background-color: #d5deef;
+} */
 
 tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #F0F3FA;
 }

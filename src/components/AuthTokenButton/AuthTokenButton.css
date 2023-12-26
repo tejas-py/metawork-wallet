@@ -1,9 +1,8 @@
-
-/* Style for the disconnected button when it's active */
 .auth-token-button {
-background-color: #ffffff;
-color: rgb(0, 0, 0);
-border: 0.5px solid black;
+background-color: #F0F3FA;
+font-family: 'Montserrat', sans-serif;
+color: #638ECB;
+border: 0.5px solid #638ECB;
 padding: 11px 32px;
 text-align: center;
 display: inline-block;
@@ -13,11 +12,11 @@ cursor: pointer;
 border-radius: 10px;
 position: absolute;
 top: 30px;
-right: 210px;
+right: 220px;
 transition: background-color 0.3s ease;
 }
 
 .auth-token-button:hover {
-background-color: #000000;
-color: rgb(255, 255, 255);
+background-color: #395886;
+color: #F0F3FA;
 }

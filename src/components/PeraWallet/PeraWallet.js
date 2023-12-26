@@ -19,7 +19,7 @@ export default function PeraWallet() {
           setAccountAddress(accounts[0])
         }
       })
-      .catch((e) => console.log(e))
+      .catch(() => console.error('WALLET NOT CONNECTED'))
     // Redirect to home page if wallet is not connected
     const verifyWalletConnect = () => {
       if (!peraWallet.isConnected) {

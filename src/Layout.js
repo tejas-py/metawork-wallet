@@ -2,6 +2,7 @@ import React from 'react'
 import { Oval } from 'react-loader-spinner'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Footer from './components/Footer/Footer'
 
 function Layout() {
   const open = useSelector((state) => state.notifAndLoadingReducer.appLoading)
@@ -9,6 +10,7 @@ function Layout() {
   return (
     <>
       <Outlet />
+      <Footer />
       {open && (
         <div
           style={{

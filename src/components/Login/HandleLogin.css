@@ -3,13 +3,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+
+.login-container p {
+  font-family: 'Roboto', sans-serif;
+  line-height: 0.1;
+  color: #395886;
+}
   
   /* Style for the login button */
   .login-button {
-    background-color: #b5d7a8;
-    color: rgb(0, 0, 0);
+    font-family: 'Montserrat', sans-serif;
+    background-color: #638ECB;
+    color: #F0F3FA;
     border: none;
     padding: 11px 75px;
     text-align: center;
@@ -22,32 +32,38 @@
   }
   
   .login-button:hover {
-    background-color: #66bb6a; /* Lighter shade for hover effect */
+    background-color: #395886; /* Lighter shade for hover effect */
   }
 
   .middle-container {
-    background-color: white; /* White background */
-    border: 0.5px solid black;
-    border-radius: 15px; /* Rounded corners */
+    background-color: #F0F3FA; /* White background */
+    border: 0.5px solid #395886;
+    border-radius: 20px; /* Rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 50px; /* Padding inside the container */
+    padding: 35px; /* Padding inside the container */
     text-align: center; /* Center text alignment */
-    max-width: 900px; /* Maximum width of the container */
-    margin: auto; /* Center the container on the page */
-    margin-top: 210px; /* Space from the top of the page */
+    max-width: 900px;
+    align-self:center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   /* Text Style inside the container */
   .middle-container p {
-    margin-bottom: 20px; /* Space between the text and the button */
-    font-size: 30px; /* Text size */
-    color: #333; /* Text color */
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+    font-size: 25px; /* Text size */
+    color: #395886; /* Text color */
+    line-height: 1.5;
   }
   
 
   .middle-container button {
-    background-color: #b5d7a8;
-    color: rgb(0, 0, 0);
+    font-family: 'Montserrat', sans-serif;
+    background-color: #638ECB;
+    color: #F0F3FA;
     border: none;
     padding: 11px 75px;
     text-align: center;
@@ -60,5 +76,5 @@
   }
 
   .middle-container button:hover {
-    background-color: #66bb6a; /* Lighter shade for hover effect */
+    background-color: #395886; /* Lighter shade for hover effect */
   }

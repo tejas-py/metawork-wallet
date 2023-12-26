@@ -14,7 +14,7 @@ export default function WalletAddressButton({
   const buttonText = isConnectedToPeraWallet
     ? isHovering
       ? 'Disconnect'
-      : `${accountAddress.slice(0, 7)}...`
+      : `${accountAddress.slice(0, 8)}...`
     : 'Disconnect'
 
   async function handleClick() {
