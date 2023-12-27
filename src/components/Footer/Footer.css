@@ -11,5 +11,6 @@
 }
 
 .footer-logo {
-    max-width: 170px; 
+    max-width: 170px;
+    cursor: pointer;
 }
