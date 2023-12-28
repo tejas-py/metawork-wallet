@@ -113,15 +113,37 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     return investment
   }
 
+  function totalGain() {
+    let gain = 0
+    for (let i = 0, l = assets.length; i < l; i++) {
+      const assetInvestment =
+        (assetPrices[assets[i].userAsset] - assets[i].avgAssetPrice) * assets[i].balance
+      gain += assetInvestment
+    }
+    return gain
+  }
+
   return (
     <div className="table-container">
       <table>
-        <caption>Total Investment: ${totalInvestment().toFixed(2)}</caption>
+        <caption>
+          <div className="caption-flex">
+            <p>
+              Total Investment<h3>${totalInvestment().toFixed(2)}</h3>
+            </p>
+            <p>
+              Total Gains<h3>${totalGain().toFixed(2)}</h3>
+            </p>
+            <p>
+              Total Yield<h3>$0</h3>
+            </p>
+          </div>
+        </caption>
         <thead>
           <tr>
             <th>
               <select onChange={handleFilterChange} className="asset-select">
-                <option value="">Assets</option>
+                <option value="">All Assets</option>
                 {uniqueAssets.map((asset, index) => (
                   <option key={index} value={asset}>
                     {asset}
@@ -135,10 +157,11 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
             <th className="sort-indicator" onClick={() => requestSort('totalInvestment')}>
               Investment
             </th>
-            <th>Current PRICE</th>
+            <th>Price</th>
             <th className="sort-indicator" onClick={() => requestSort('avgAssetPrice')}>
-              Avg Asset Price
+              Avg Price
             </th>
+            <th>Asset Gains</th>
             <th>Yield</th>
             <th>Trade History</th>
           </tr>
@@ -154,6 +177,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
               <td>
                 ${((assetPrices[asset.userAsset] - asset.avgAssetPrice) * asset.balance).toFixed(3)}
               </td>
+              <td>N/A</td>
               <td>
                 <button
                   className="view-button"
