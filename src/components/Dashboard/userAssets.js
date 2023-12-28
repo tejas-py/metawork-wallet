@@ -1,6 +1,5 @@
 import { authTokenInfo } from '../../blockchain/accounts.js'
 import { authTokenDetails } from '../../blockchain/authToken.js'
-import { getAssetPrice } from './AssetPrice.js'
 
 function unixConverter(timestamp) {
   const date = new Date(timestamp)
@@ -46,13 +45,6 @@ function calculateBalanceAvgPrice(tradeHistory) {
 }
 
 export default async function getUserAssets(accountAddress) {
-  const genePrice = await getAssetPrice('USDC', 'GENE')
-  const sysPrice = await getAssetPrice('USDC', 'SNS')
-  const price = {
-    'Genopets': genePrice.data.data.data.USDC.price,
-    'Synesis One': sysPrice.data.data.data.USDC.price,
-  }
-
   const authTokenId = await authTokenInfo(accountAddress)
   const authToken = await authTokenDetails(authTokenId)
 
@@ -66,7 +58,6 @@ export default async function getUserAssets(accountAddress) {
     const userAssetData = {
       userAsset: userAssets[i],
       balance,
-      assetPrice: price[userAssets[i]],
       totalInvestment: balance * avgAssetPrice,
       avgAssetPrice,
       tradeHistory,

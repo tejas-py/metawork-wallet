@@ -83,14 +83,30 @@ table {
 }
 
 caption {
-  font-family: 'Roboto', sans-serif;
-  color: #638ECB;
-  margin: 20px 0;
-  font-size: 20px;
-  text-align: left;
-  padding: 10px;
-  background-color: #d5deef;
+  font-family: 'Source Sans', sans-serif;
+  margin: 20px;
+  background-color: #f0f3fa;
+  width: 50%;
+  margin-left:25%;
+  padding-left: 30px;
+  padding-right: 30px;
 }
+
+.caption-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+caption p {
+  color: #638ECB;
+  font-size: 20px;
+}
+
+caption p h3 {
+  margin: 1px;
+}
+
 
 th {
   font-family: 'Source Sans Pro', sans-serif;
@@ -98,19 +114,34 @@ th {
   color: #F0F3FA;
   font-weight: normal;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 td {
   font-family: 'Roboto', sans-serif;
   padding: 10px;
   border-bottom: 1px solid #dddddd;
+  text-align: center;
 }
-/* 
-tbody tr:nth-child(even) {
-  background-color: #d5deef;
-} */
 
 tbody tr:hover {
   background-color: #F0F3FA;
+}
+
+.sort-indicator {
+  cursor:pointer;
+}
+
+.asset-select {
+  appearance: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: inherit;
+  background: transparent;
+  font-size: 16px;
+  border: 0;
+  outline: 0;
+  overflow: hidden;
+  cursor: pointer;
+  text-align-last: center;
 }
