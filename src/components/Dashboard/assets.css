@@ -106,11 +106,24 @@ td {
   padding: 10px;
   border-bottom: 1px solid #dddddd;
 }
-/* 
-tbody tr:nth-child(even) {
-  background-color: #d5deef;
-} */
 
 tbody tr:hover {
   background-color: #F0F3FA;
+}
+
+.sort-indicator {
+  cursor:pointer;
+}
+
+.asset-select {
+  appearance: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: inherit;
+  background: transparent;
+  font-size: 16px;
+  border: 0;
+  outline: 0;
+  overflow: hidden;
+  cursor: pointer;
 }
