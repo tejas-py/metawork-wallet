@@ -21,8 +21,12 @@ export default function CreateAuthToken() {
   React.useEffect(() => {
     const verifyToken = async () => {
       const res = await checkAuthToken(accountAddress)
-      if (res) {
+      if (res === 'user') {
         navigate('/dashboard')
+      }
+
+      if (res === 'admin') {
+        navigate('/adminPortal')
       }
     }
     verifyToken()
