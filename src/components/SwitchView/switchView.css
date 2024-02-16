@@ -1,0 +1,23 @@
+.switchView {
+    background-color: #F0F3FA;
+    font-family: 'Montserrat', sans-serif;
+    color: #638ECB;
+    border: 0px;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 10px;
+    cursor: pointer;
+    border-radius: 50px;
+    position: absolute;
+    top: 30px;
+    right: 460px;
+    transition: background-color 0.3s ease;
+}
+    
+.switchView:hover {
+    background-color: #628ECB;
+    color: #F0F3FA;
+    border-radius: 50px;
+}

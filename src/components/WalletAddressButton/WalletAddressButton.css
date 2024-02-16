@@ -37,7 +37,8 @@
 }
 
 .wallet-button:hover {
-background-color: #395886; /* Lighter shade for hover effect */
+  background-color: #395886; /* Lighter shade for hover effect */
+  padding: 11px 40px;
 }
 
 .wallet-button:disabled:hover {
