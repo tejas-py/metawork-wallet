@@ -1,6 +1,7 @@
 import React from 'react'
 import { PeraWalletConnect } from '@perawallet/connect'
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 const peraWallet = new PeraWalletConnect()
 
@@ -8,6 +9,7 @@ export default function PeraWallet() {
   const [accountAddress, setAccountAddress] = React.useState(null)
   const isConnectedToPeraWallet = !!accountAddress
   const navigate = useNavigate()
+  const location = useLocation()
 
   React.useEffect(() => {
     // Reconnect to the session when the component is mounted
@@ -27,7 +29,7 @@ export default function PeraWallet() {
       }
     }
     verifyWalletConnect()
-  }, [navigate])
+  }, [isConnectedToPeraWallet, navigate, location.pathname])
 
   function handleConnectWalletClick() {
     peraWallet

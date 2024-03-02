@@ -3,20 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
 import MintMyNFT from './MintMyNFT.js'
-import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
 import { checkAuthToken } from '../../blockchain/accounts'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
+import NavBar from '../NavBar/NavBar'
 import '../Login/HandleLogin.css'
 
 export default function CreateAuthToken() {
+  const [peraWallet, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] =
+    PeraWallet()
   const [nftMinted, setNftMinted] = React.useState(false)
   const [nftTxnId, setNftTxnId] = React.useState('')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  const [peraWallet, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] =
-    PeraWallet()
 
   React.useEffect(() => {
     const verifyToken = async () => {
@@ -34,13 +33,10 @@ export default function CreateAuthToken() {
 
   return (
     <>
-      <div className="heading">
-        <h1>Registration</h1>
-      </div>
-      <WalletAddressButton
+      <NavBar
         accountAddress={accountAddress}
         isConnectedToPeraWallet={isConnectedToPeraWallet}
-        handleDisconnectWalletClick={handleDisconnectWalletClick}
+        handleDisconnectWalletClick={handleConnectWalletClick}
       />
       <div className="middle-container">
         {!nftMinted ? (

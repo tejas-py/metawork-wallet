@@ -26,7 +26,7 @@ function Layout() {
             width: '100%',
             height: '100%',
             background: '#00000041',
-          }}  
+          }}
         >
           <Oval
             height={80}

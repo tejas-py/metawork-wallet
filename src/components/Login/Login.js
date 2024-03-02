@@ -1,27 +1,18 @@
 import React from 'react'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
+import NavBar from '../NavBar/NavBar'
 import HandleLogin from './HandleLogin.js'
-import WalletAddressButton from '../WalletAddressButton/WalletAddressButton.js'
 import '../../App.css'
 
 export default function Login() {
-  const [
-    ,
-    accountAddress,
-    isConnectedToPeraWallet,
-    handleConnectWalletClick,
-    handleDisconnectWalletClick,
-  ] = PeraWallet()
+  const [, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] = PeraWallet()
 
   return (
     <>
-      <div className="heading">
-        <h1>Welcome to the Metawork Portal</h1>
-      </div>
-      <WalletAddressButton
+      <NavBar
         accountAddress={accountAddress}
         isConnectedToPeraWallet={isConnectedToPeraWallet}
-        handleDisconnectWalletClick={handleDisconnectWalletClick}
+        handleDisconnectWalletClick={handleConnectWalletClick}
       />
       <HandleLogin
         isConnectedToPeraWallet={isConnectedToPeraWallet}

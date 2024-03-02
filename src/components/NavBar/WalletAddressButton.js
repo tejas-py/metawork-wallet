@@ -1,6 +1,6 @@
 import React from 'react'
-import './WalletAddressButton.css'
 import { useNavigate } from 'react-router-dom'
+import './NavBar.css'
 
 export default function WalletAddressButton({
   accountAddress,
@@ -8,8 +8,8 @@ export default function WalletAddressButton({
   handleDisconnectWalletClick,
 }) {
   const navigate = useNavigate()
-
   const [isHovering, setIsHovering] = React.useState(false)
+
   const hoverText = isConnectedToPeraWallet ? accountAddress : 'Wallet not connected'
   const buttonText = isConnectedToPeraWallet
     ? isHovering
