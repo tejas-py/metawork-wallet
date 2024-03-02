@@ -1,13 +1,13 @@
 .footer{
+    position: -webkit-sticky;
+    position: sticky;
     background-color: #D5DEEF;
-    padding: 35px; 
+    padding: 10px; 
     width: 100%;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
-    color: #395886;
     font-size: 20px;
     position: absolute;
-    top: 90%;
+    bottom: 0;
 }
 
 .footer-logo {

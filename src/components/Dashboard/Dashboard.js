@@ -18,18 +18,6 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="heading">
-        <h1>User Dashboard</h1>
-      </div>
-      <div>
-        <AuthTokenButton walletAddress={accountAddress} />
-      </div>
-      <SwitchView isAdmin={isAdmin} />
-      <WalletAddressButton
-        accountAddress={accountAddress}
-        isConnectedToPeraWallet={isConnectedToPeraWallet}
-        handleDisconnectWalletClick={handleDisconnectWalletClick}
-      />
       <AssetsTable
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         accountAddress={accountAddress}

@@ -7,35 +7,13 @@ import './switchView.css'
 export default function SwitchView({ isAdmin }) {
   const navigate = useNavigate()
   const location = useLocation()
+  const isVisible =
+    isAdmin && (location.pathname === '/dashboard' || location.pathname === '/adminPortal')
 
-  // return isAdmin ? (
-  //   <img
-  //     src={switchImage}
-  //     alt="Switch Dashboard"
-  //     className="switch"
-  // onClick={() => {
-  //   if (location.pathname === '/dashboard') {
-  //     navigate('/adminPortal')
-  //   }
-  //   if (location.pathname === '/adminPortal') {
-  //     navigate('/dashboard')
-  //   }
-  // }}
-  //   />
-  // ) : null
-
-  function DisplayText() {
-    if (location.pathname === '/dashboard') {
-      return 'To Admin'
-    }
-    if (location.pathname === '/adminPortal') {
-      return 'To User'
-    }
-  }
-
-  return isAdmin ? (
+  return (
     <button
       className="switchView"
+      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
       onClick={() => {
         if (location.pathname === '/dashboard') {
           navigate('/adminPortal')
@@ -47,5 +25,5 @@ export default function SwitchView({ isAdmin }) {
     >
       <img src={switchImage} alt="Switch Dashboard" style={{ width: '25px', height: '25px' }} />
     </button>
-  ) : null
+  )
 }

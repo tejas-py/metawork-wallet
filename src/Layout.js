@@ -3,12 +3,14 @@ import { Oval } from 'react-loader-spinner'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Footer from './components/Footer/Footer'
+import NavBar from './components/NavBar/NavBar'
 
 function Layout() {
   const open = useSelector((state) => state.notifAndLoadingReducer.appLoading)
 
   return (
     <>
+      <NavBar />
       <Outlet />
       <Footer />
       {open && (
@@ -26,7 +28,7 @@ function Layout() {
             width: '100%',
             height: '100%',
             background: '#00000041',
-          }}  
+          }}
         >
           <Oval
             height={80}

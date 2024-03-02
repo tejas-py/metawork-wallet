@@ -8,8 +8,8 @@ export default function WalletAddressButton({
   handleDisconnectWalletClick,
 }) {
   const navigate = useNavigate()
-
   const [isHovering, setIsHovering] = React.useState(false)
+
   const hoverText = isConnectedToPeraWallet ? accountAddress : 'Wallet not connected'
   const buttonText = isConnectedToPeraWallet
     ? isHovering
