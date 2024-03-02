@@ -35,7 +35,7 @@ export default function NavBar({
       return <h1 className="heading">User Dashboard</h1>
     }
     if (location.pathname === '/adminPortal') {
-      return <h1 className="heading">Admin Dashboard</h1>
+      return <h1 className="heading">Admin Portal</h1>
     }
   }
 
