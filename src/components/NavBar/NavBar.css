@@ -14,5 +14,77 @@
     width: 510px;
     justify-content: space-evenly;
     position: relative;
-    left: 570px;
+    left: 620px;
+}
+
+.auth-token-button {
+    background-color: #F0F3FA;
+    font-family: 'Montserrat', sans-serif;
+    color: #638ECB;
+    border: 0.5px solid #638ECB;
+    padding: 11px 32px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+    
+.auth-token-button:hover {
+    background-color: #395886;
+    color: #F0F3FA;
+}
+
+.switchView {
+    background-color: #F0F3FA;
+    color: #638ECB;
+    border: 0px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+    
+.switchView:hover {
+    background-color: #628ECB;
+    color: #F0F3FA;
+    border-radius: 50px;
+}
+
+.wallet-button {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #628ECB; 
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 11px 32px;
+  font-size: 20px;
+  margin: 4px 2px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  
+}
+
+.wallet-button:disabled {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #D5DEEF; 
+  color: #ffffff;
+  border: none;
+  padding: 11px 32px;
+  text-align: center;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: not-allowed;
+  border-radius: 10px;
+  }
+  
+.wallet-button:disabled:hover {
+    background-color: #D5DEEF;
+    padding: 11px 32px;
+    cursor: not-allowed;
+  }
+
+.wallet-button:hover {
+  background-color: #395886; 
+  padding: 11px 40px;
+  cursor: pointer;
 }

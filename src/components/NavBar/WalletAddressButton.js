@@ -1,6 +1,6 @@
 import React from 'react'
-import './WalletAddressButton.css'
 import { useNavigate } from 'react-router-dom'
+import './NavBar.css'
 
 export default function WalletAddressButton({
   accountAddress,

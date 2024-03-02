@@ -5,16 +5,17 @@ import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
 import MintMyNFT from './MintMyNFT.js'
 import { checkAuthToken } from '../../blockchain/accounts'
 import PeraWallet from '../PeraWallet/PeraWallet.js'
+import NavBar from '../NavBar/NavBar'
 import '../Login/HandleLogin.css'
 
 export default function CreateAuthToken() {
+  const [peraWallet, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] =
+    PeraWallet()
   const [nftMinted, setNftMinted] = React.useState(false)
   const [nftTxnId, setNftTxnId] = React.useState('')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  const [peraWallet, accountAddress, isConnectedToPeraWallet, ,] = PeraWallet()
 
   React.useEffect(() => {
     const verifyToken = async () => {
@@ -32,6 +33,11 @@ export default function CreateAuthToken() {
 
   return (
     <>
+      <NavBar
+        accountAddress={accountAddress}
+        isConnectedToPeraWallet={isConnectedToPeraWallet}
+        handleDisconnectWalletClick={handleConnectWalletClick}
+      />
       <div className="middle-container">
         {!nftMinted ? (
           <>

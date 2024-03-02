@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import switchImage from '../../assets/admin-user-switch.png'
 import { useLocation } from 'react-router-dom'
-import './switchView.css'
+import './NavBar.css'
 
 export default function SwitchView({ isAdmin }) {
   const navigate = useNavigate()

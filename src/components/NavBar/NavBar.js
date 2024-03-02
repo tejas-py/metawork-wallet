@@ -1,15 +1,17 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import PeraWallet from '../PeraWallet/PeraWallet.js'
-import SwitchView from '../SwitchView/SwitchView'
-import AuthTokenButton from '../AuthTokenButton/AuthTokenButton'
-import WalletAddressButton from '../WalletAddressButton/WalletAddressButton'
+import SwitchView from './SwitchView'
+import AuthTokenButton from './AuthTokenButton'
+import WalletAddressButton from './WalletAddressButton'
 import { checkAuthToken } from '../../blockchain/accounts.js'
 import './NavBar.css'
 
-export default function NavBar() {
+export default function NavBar({
+  accountAddress,
+  isConnectedToPeraWallet,
+  handleDisconnectWalletClick,
+}) {
   const location = useLocation()
-  const [, accountAddress, isConnectedToPeraWallet, , handleDisconnectWalletClick] = PeraWallet()
   const [isAdmin, setIsAdmin] = React.useState(false)
 
   React.useEffect(() => {

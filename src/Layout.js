@@ -3,14 +3,12 @@ import { Oval } from 'react-loader-spinner'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Footer from './components/Footer/Footer'
-import NavBar from './components/NavBar/NavBar'
 
 function Layout() {
   const open = useSelector((state) => state.notifAndLoadingReducer.appLoading)
 
   return (
     <>
-      <NavBar />
       <Outlet />
       <Footer />
       {open && (
