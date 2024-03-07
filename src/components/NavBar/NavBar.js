@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import SwitchView from './SwitchView'
 import AuthTokenButton from './AuthTokenButton'
 import WalletAddressButton from './WalletAddressButton'
-import { checkAuthToken } from '../../blockchain/accounts.js'
+import { investorDetails } from '../../backend/api'
 import './NavBar.css'
 
 export default function NavBar({
@@ -16,8 +16,9 @@ export default function NavBar({
 
   React.useEffect(() => {
     async function fetchAdminStatus() {
-      const connectedUser = await checkAuthToken(accountAddress)
-      setIsAdmin(connectedUser === 'admin')
+      const connectedUserDetails = await investorDetails(accountAddress)
+      const userType = connectedUserDetails.data.message.user_type
+      setIsAdmin(userType === 'admin')
     }
     if (accountAddress) {
       fetchAdminStatus()

@@ -94,7 +94,7 @@ caption {
 
 .caption-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
 }
 

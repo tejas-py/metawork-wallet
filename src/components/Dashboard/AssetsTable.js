@@ -7,36 +7,9 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
   const [assets, setAssets] = React.useState([])
   const [filteredAssets, setFilteredAssets] = React.useState([])
   const [uniqueAssets, setUniqueAssets] = React.useState([])
-  const [assetPrices, setAssetPrices] = React.useState({})
   const [isPopupOpen, setIsPopupOpen] = React.useState(false)
   const [selectedAsset, setSelectedAsset] = React.useState(null)
   const [sortConfig, setSortConfig] = React.useState({ key: null, direction: 'ascending' })
-
-  // Function to fetch price for 'Genopets'
-  const fetchGenopetsPrice = () => {
-    fetch('https://price.jup.ag/v4/price?ids=USDC&vsToken=GENE')
-      .then((response) => response.json())
-      .then((data) => {
-        setAssetPrices((prevPrices) => ({
-          ...prevPrices,
-          Genopets: (1 / data.data.USDC.price).toFixed(6),
-        }))
-      })
-      .catch((error) => console.error('Error fetching Genopets price:', error))
-  }
-
-  // Function to fetch price for 'Synesis One'
-  const fetchSynesisOnePrice = () => {
-    fetch('https://price.jup.ag/v4/price?ids=USDC&vsToken=SNS')
-      .then((response) => response.json())
-      .then((data) => {
-        setAssetPrices((prevPrices) => ({
-          ...prevPrices,
-          'Synesis One': (1 / data.data.USDC.price).toFixed(6),
-        }))
-      })
-      .catch((error) => console.error('Error fetching Synesis One price:', error))
-  }
 
   React.useEffect(() => {
     // Function to fetch user assets
@@ -52,19 +25,10 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     }
     // Call fetchData for initial load
     fetchData()
-    // Fetch both prices initially
-    fetchGenopetsPrice()
-    fetchSynesisOnePrice()
-    // Set an interval to fetch both prices every second
-    const priceInterval = setInterval(() => {
-      fetchGenopetsPrice()
-      fetchSynesisOnePrice()
-    }, 1000)
+
     // Asset selection
     const assetTypes = Array.from(new Set(assets.map((asset) => asset.userAsset)))
     setUniqueAssets(assetTypes)
-    // Cleanup interval on component unmount
-    return () => clearInterval(priceInterval)
   }, [isConnectedToPeraWallet, accountAddress, assets])
 
   // Handle change event of select
@@ -113,16 +77,6 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     return investment
   }
 
-  function totalGain() {
-    let gain = 0
-    for (let i = 0, l = assets.length; i < l; i++) {
-      const assetInvestment =
-        (assetPrices[assets[i].userAsset] - assets[i].avgAssetPrice) * assets[i].balance
-      gain += assetInvestment
-    }
-    return gain
-  }
-
   return (
     <div className="table-container">
       <table>
@@ -130,9 +84,6 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
           <div className="caption-flex">
             <p>
               Total Investment<h3>${totalInvestment().toFixed(2)}</h3>
-            </p>
-            <p>
-              Total Gains<h3>${totalGain().toFixed(2)}</h3>
             </p>
             <p>
               Total Yield<h3>$0</h3>
@@ -157,11 +108,9 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
             <th className="sort-indicator" onClick={() => requestSort('totalInvestment')}>
               Investment
             </th>
-            <th>Price</th>
             <th className="sort-indicator" onClick={() => requestSort('avgAssetPrice')}>
               Avg Price
             </th>
-            <th>Asset Gains</th>
             <th>Yield</th>
             <th>Trade History</th>
           </tr>
@@ -172,11 +121,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
               <td>{asset.userAsset}</td>
               <td>{asset.balance}</td>
               <td>${asset.totalInvestment.toFixed(2)}</td>
-              <td>${assetPrices[asset.userAsset]}</td>
               <td>${asset.avgAssetPrice.toFixed(2)}</td>
-              <td>
-                ${((assetPrices[asset.userAsset] - asset.avgAssetPrice) * asset.balance).toFixed(3)}
-              </td>
               <td>N/A</td>
               <td>
                 <button

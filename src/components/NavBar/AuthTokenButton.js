@@ -2,12 +2,13 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
-import { authTokenInfo } from '../../blockchain/accounts'
+import { investorDetails } from '../../backend/api.js'
 import './NavBar.css'
 
 async function assetId(walletAddress) {
-  const assetinfo = await authTokenInfo(walletAddress)
-  window.open(`https://app.dappflow.org/explorer/asset/${assetinfo}`, '_blank')
+  const investorInfo = await investorDetails(walletAddress)
+  const authId = investorInfo.data.message.auth_id
+  window.open(`https://app.dappflow.org/explorer/asset/${authId}`, '_blank')
 }
 export default function AuthTokenButton({ walletAddress }) {
   const dispatch = useDispatch()
