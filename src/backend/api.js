@@ -68,8 +68,8 @@ export const investorDetails = async (wallet_address) => {
   }
 }
 
-export const loginInvestor = async (info) => {
-  const data = JSON.stringify(info)
+export const loginInvestor = async (authId) => {
+  const data = JSON.stringify({ auth_id: authId })
   const config = {
     method: 'patch',
     url: `${URL}/user/investor/login/`,

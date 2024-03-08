@@ -7,6 +7,7 @@ import './NavBar.css'
 export default function SwitchView({ isAdmin }) {
   const navigate = useNavigate()
   const location = useLocation()
+
   const isVisible =
     isAdmin && (location.pathname === '/dashboard' || location.pathname === '/adminPortal')
 
