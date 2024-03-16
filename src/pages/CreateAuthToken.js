@@ -1,14 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
-import { createInvestor } from '../../backend/api.js'
-import MintMyNFT from './MintMyNFT.js'
-import { authTokenInfo } from '../../blockchain/accounts.js'
-import { investorDetails } from '../../backend/api.js'
-import PeraWallet from '../PeraWallet/PeraWallet.js'
-import NavBar from '../NavBar/NavBar'
-import '../Login/HandleLogin.css'
+import { toggleAppLoading } from '../store/slices/LoadinAndNotifSlice.js'
+import { createInvestor } from '../backend/api.js'
+import MintMyNFT from '../components/CreateAuthToken/MintMyNFT.js'
+import { authTokenInfo } from '../blockchain/accounts.js'
+import { investorDetails } from '../backend/api.js'
+import PeraWallet from '../components/PeraWallet/PeraWallet.js'
+import NavBar from '../components/NavBar/NavBar.js'
+import '../components/Login/HandleLogin.css'
 
 export default function CreateAuthToken() {
   const [peraWallet, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] =

@@ -6,17 +6,17 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
-import './index.css'
-import Login from './components/Login/Login'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { store } from './store'
+import './index.css'
 
 // Routes
 import Layout from './Layout'
-import CreateAuthToken from './components/CreateAuthToken/CreateAuthToken'
-import Dashboard from './components/Dashboard/Dashboard'
-import AdminPortal from './components/AdminPortal/AdminPortal'
+import Login from './pages/Login'
+import CreateAuthToken from './pages/CreateAuthToken'
+import Dashboard from './pages/Dashboard'
+import AdminPortal from './pages/AdminPortal'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

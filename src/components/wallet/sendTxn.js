@@ -1,4 +1,4 @@
-import { algod } from '../blockchain/algodClient'
+import { algod } from '../../blockchain/algodClient'
 const algosdk = require('algosdk')
 
 export default async function sendTxn(signedTxn) {

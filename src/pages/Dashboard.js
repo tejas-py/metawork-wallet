@@ -1,7 +1,7 @@
 import React from 'react'
-import PeraWallet from '../PeraWallet/PeraWallet.js'
-import NavBar from '../NavBar/NavBar'
-import AssetsTable from './AssetsTable.js'
+import PeraWallet from '../components/PeraWallet/PeraWallet.js'
+import NavBar from '../components/NavBar/NavBar.js'
+import AssetsTable from '../components/Dashboard/AssetsTable.js'
 
 export default function Dashboard() {
   const [, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] = PeraWallet()
