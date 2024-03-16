@@ -8,7 +8,7 @@ import { authTokenInfo } from '../blockchain/accounts.js'
 import { investorDetails } from '../backend/api.js'
 import PeraWallet from '../components/PeraWallet/PeraWallet.js'
 import NavBar from '../components/NavBar/NavBar.js'
-import '../components/Login/HandleLogin.css'
+import '../tailwind.css'
 
 export default function CreateAuthToken() {
   const [peraWallet, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] =
@@ -41,14 +41,15 @@ export default function CreateAuthToken() {
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         handleDisconnectWalletClick={handleConnectWalletClick}
       />
-      <div className="middle-container">
+      <div className="absolute bg-base-100 border border-neutral rounded-2xl shadow p-9 text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {!nftMinted ? (
           <>
-            <p>
-              Please click to approve. This will create your own personalized NFT for the platform.
-              You will then use this NFT login to the system.
+            <p className="font-montserrat text-accent text-xl">
+              This will create your own personalized NFT for the platform. You will then use this
+              NFT login to the system.
             </p>
             <button
+              className="btn btn-accent btn-md font-montserrat text-base-100 mt-4 px-10"
               onClick={async () => {
                 dispatch(toggleAppLoading(true))
                 const createdAuthIdTxnId = await MintMyNFT(peraWallet, accountAddress)
@@ -72,19 +73,20 @@ export default function CreateAuthToken() {
                 dispatch(toggleAppLoading(false))
               }}
             >
-              Mint my NFT
+              Mint
             </button>
           </>
         ) : (
           <>
-            <p>Success! Look at your shiny new NFT</p>
+            <p className="font-montserrat text-accent">Success! Look at your shiny new NFT</p>
             <button
+              className="btn btn-accent btn-md font-montserrat text-base-100 mt-4 px-10"
               onClick={() => {
                 window.open(`https://app.dappflow.org/explorer/transaction/${nftTxnId}`, '_blank')
                 navigate('/dashboard')
               }}
             >
-              View NFT
+              View
             </button>
           </>
         )}

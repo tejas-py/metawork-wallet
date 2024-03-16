@@ -2,7 +2,6 @@ import React from 'react'
 import PeraWallet from '../components/PeraWallet/PeraWallet.js'
 import NavBar from '../components/NavBar/NavBar.js'
 import HandleLogin from '../components/Login/HandleLogin.js'
-import '../App.css'
 
 export default function Login() {
   const [, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] = PeraWallet()

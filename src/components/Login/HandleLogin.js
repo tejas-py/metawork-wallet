@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
 import HandleAuthToken from './HandleAuthToken.js'
-import './HandleLogin.css'
+import '../../tailwind.css'
 
 export default function HandleLogin({
   isConnectedToPeraWallet,
@@ -12,14 +12,6 @@ export default function HandleLogin({
 }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  function DisplayText() {
-    if (isConnectedToPeraWallet) {
-      return <p>Click here to login</p>
-    } else {
-      return <p>Click to connect to your wallet</p>
-    }
-  }
 
   async function handleLoginClick() {
     if (isConnectedToPeraWallet) {
@@ -30,20 +22,22 @@ export default function HandleLogin({
   }
 
   return (
-    <div className="login-container">
-      <DisplayText />
-      <div>
-        <button
-          onClick={async () => {
-            dispatch(toggleAppLoading(true))
-            await handleLoginClick()
-            dispatch(toggleAppLoading(false))
-          }}
-          className="login-button"
-        >
-          {isConnectedToPeraWallet ? 'Login' : 'Connect'}
-        </button>
-      </div>
+    <div className="flex flex-col min-h-screen justify-center items-center">
+      {isConnectedToPeraWallet ? (
+        <p className="font-montserrat text-accent">Click here to login</p>
+      ) : (
+        <p className="font-montserrat text-accent">Connect to your wallet</p>
+      )}
+      <button
+        className="font-montserrat bg-accent rounded-lg text-base-100 py-3 px-20"
+        onClick={async () => {
+          dispatch(toggleAppLoading(true))
+          await handleLoginClick()
+          dispatch(toggleAppLoading(false))
+        }}
+      >
+        {isConnectedToPeraWallet ? 'Login' : 'Connect'}
+      </button>
     </div>
   )
 }
