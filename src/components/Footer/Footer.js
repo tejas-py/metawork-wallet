@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../../assets/logo-nobg.png'
-import '../../tailwind.css'
+import '../../app.css'
 
 export default function Footer() {
   return (

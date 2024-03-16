@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../../tailwind.css'
+import '../../app.css'
 
 export default function WalletAddressButton({
   accountAddress,
