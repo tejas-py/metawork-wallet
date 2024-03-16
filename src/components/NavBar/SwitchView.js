@@ -13,7 +13,7 @@ export default function SwitchView({ isAdmin }) {
   return (
     <button
       className="btn btn-accent btn-sm lg:btn-md rounded-2xl bg-base-100 border-none px-2 lg:px-3"
-      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+      style={{ display: isVisible ? '' : 'none' }}
       onClick={() => {
         if (location.pathname === '/dashboard') {
           navigate('/adminPortal')

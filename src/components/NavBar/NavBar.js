@@ -27,19 +27,21 @@ export default function NavBar({
 
   function NavHeading() {
     if (location.pathname === '/') {
-      return <h1 className="font-montserrat text-lg lg:text-3xl text-accent pl-2.5">MetaWork</h1>
+      return <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">MetaWork</h1>
     }
     if (location.pathname === '/createAuthToken') {
       return (
-        <h1 className="font-montserrat text-lg lg:text-3xl text-accent pl-2.5">Registration</h1>
+        <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">Registration</h1>
       )
     }
     if (location.pathname === '/dashboard') {
-      return <h1 className="font-montserrat text-lg lg:text-3xl text-accent pl-2.5">User Portal</h1>
+      return (
+        <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">User Portal</h1>
+      )
     }
     if (location.pathname === '/adminPortal') {
       return (
-        <h1 className="font-montserrat text-lg lg:text-3xl text-accent pl-2.5">Admin Portal</h1>
+        <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">Admin Portal</h1>
       )
     }
   }
@@ -50,7 +52,7 @@ export default function NavBar({
         <NavHeading />
       </div>
       <div className="flex-none">
-        <ul className="flex flex-row justify-around w-72 lg:w-80">
+        <ul className="flex flex-row justify-evenly w-72 lg:w-80">
           <SwitchView isAdmin={isAdmin} />
           <AuthTokenButton walletAddress={accountAddress} />
           <WalletAddressButton

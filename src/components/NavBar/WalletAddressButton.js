@@ -27,7 +27,7 @@ export default function WalletAddressButton({
   return (
     <button
       disabled={!isConnectedToPeraWallet}
-      className="btn btn-accent mr-0.5 btn-sm lg:btn-md font-montserrat text-base-100 px-2 lg:px-3"
+      className="btn btn-accent btn-sm lg:btn-md font-montserrat text-base-100 px-2 lg:px-3"
       onClick={handleClick}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
