@@ -1,13 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js}'],
+  theme: {
+    fontFamily: {
+      montserrat: ['Montserrat', 'sans-serif'],
+    },
+  },
   daisyui: {
     themes: [
       {
         mytheme: {
           'primary': '#b1c9ef',
           'secondary': '#8aaee0',
-          'accent': '#628ecb',
+          'accent': '#628ECB',
           'neutral': '#395886',
           'base-100': '#f0f3fa',
           'info': '#d5deef',

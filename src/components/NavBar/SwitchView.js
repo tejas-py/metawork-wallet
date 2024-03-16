@@ -2,18 +2,17 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import switchImage from '../../assets/admin-user-switch.png'
 import { useLocation } from 'react-router-dom'
-import './NavBar.css'
+import '../../tailwind.css'
 
 export default function SwitchView({ isAdmin }) {
   const navigate = useNavigate()
   const location = useLocation()
-
   const isVisible =
     isAdmin && (location.pathname === '/dashboard' || location.pathname === '/adminPortal')
 
   return (
     <button
-      className="switchView"
+      className="btn btn-accent btn-sm lg:btn-md rounded-2xl bg-base-100 border-none px-2 lg:px-3"
       style={{ visibility: isVisible ? 'visible' : 'hidden' }}
       onClick={() => {
         if (location.pathname === '/dashboard') {
@@ -24,7 +23,12 @@ export default function SwitchView({ isAdmin }) {
         }
       }}
     >
-      <img src={switchImage} alt="Switch Dashboard" style={{ width: '25px', height: '25px' }} />
+      <img
+        src={switchImage}
+        viewBox="0 0 24 24"
+        alt="Switch Dashboard"
+        style={{ width: '20px', height: '20px' }}
+      />
     </button>
   )
 }

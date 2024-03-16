@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import './NavBar.css'
+import '../../tailwind.css'
 
 export default function WalletAddressButton({
   accountAddress,
@@ -27,7 +27,7 @@ export default function WalletAddressButton({
   return (
     <button
       disabled={!isConnectedToPeraWallet}
-      className="wallet-button"
+      className="btn btn-accent mr-0.5 btn-sm lg:btn-md font-montserrat text-base-100 px-2 lg:px-3"
       onClick={handleClick}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
