@@ -1,14 +1,13 @@
 import React from 'react'
 import TradeHistoryPopup from './TradeHistoryPopup'
+import TableStats from './TableStats'
 import getUserAssets from './userAssets'
-import './assets.css'
+import synesisLogo from '../../assets/assetsLogo/synesis.png'
+import genopetLogo from '../../assets/assetsLogo/genopets.png'
 
 export default function AssetsTable({ isConnectedToPeraWallet, accountAddress }) {
   const [assets, setAssets] = React.useState([])
   const [filteredAssets, setFilteredAssets] = React.useState([])
-  const [uniqueAssets, setUniqueAssets] = React.useState([])
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false)
-  const [selectedAsset, setSelectedAsset] = React.useState(null)
   const [sortConfig, setSortConfig] = React.useState({ key: null, direction: 'ascending' })
 
   React.useEffect(() => {
@@ -25,21 +24,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     }
     // Call fetchData for initial load
     fetchData()
-
-    // Asset selection
-    const assetTypes = Array.from(new Set(assets.map((asset) => asset.userAsset)))
-    setUniqueAssets(assetTypes)
   }, [isConnectedToPeraWallet, accountAddress, assets])
-
-  // Handle change event of select
-  const handleFilterChange = (event) => {
-    const selectedAsset = event.target.value
-    if (selectedAsset) {
-      setFilteredAssets(assets.filter((asset) => asset.userAsset === selectedAsset))
-    } else {
-      setFilteredAssets(assets)
-    }
-  }
 
   const sortedItems = React.useMemo(() => {
     let sortableItems = [...assets]
@@ -60,93 +45,102 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     return sortableItems
   }, [assets, filteredAssets, sortConfig])
 
-  const requestSort = (key) => {
-    let direction = 'ascending'
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending'
+  function assetLogo(asset) {
+    if (asset === 'Genopets') {
+      return genopetLogo
     }
-    setSortConfig({ key, direction })
-  }
-
-  function totalInvestment() {
-    let investment = 0
-    for (let i = 0, l = assets.length; i < l; i++) {
-      const assetInvestment = assets[i].totalInvestment
-      investment += assetInvestment
+    if (asset === 'Synesis One') {
+      return synesisLogo
     }
-    return investment
   }
 
   return (
-    <div className="table-container">
-      <table>
-        <caption>
-          <div className="caption-flex">
-            <p>
-              Total Investment<h3>${totalInvestment().toFixed(2)}</h3>
-            </p>
-            <p>
-              Total Yield<h3>$0</h3>
-            </p>
-          </div>
-        </caption>
-        <thead>
-          <tr>
-            <th>
-              <select onChange={handleFilterChange} className="asset-select">
-                <option value="">All Assets</option>
-                {uniqueAssets.map((asset, index) => (
-                  <option key={index} value={asset}>
-                    {asset}
-                  </option>
-                ))}
-              </select>
-            </th>
-            <th className="sort-indicator" onClick={() => requestSort('balance')}>
-              Balance
-            </th>
-            <th className="sort-indicator" onClick={() => requestSort('totalInvestment')}>
-              Investment
-            </th>
-            <th className="sort-indicator" onClick={() => requestSort('avgAssetPrice')}>
-              Avg Price
-            </th>
-            <th>Yield</th>
-            <th>Trade History</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedItems.map((asset, index) => (
-            <tr key={index}>
-              <td>{asset.userAsset}</td>
-              <td>{asset.balance}</td>
-              <td>${asset.totalInvestment.toFixed(2)}</td>
-              <td>${asset.avgAssetPrice.toFixed(2)}</td>
-              <td>N/A</td>
-              <td>
-                <button
-                  className="view-button"
-                  onClick={() => {
-                    setSelectedAsset(asset)
-                    setIsPopupOpen(true)
-                  }}
-                >
-                  View
-                </button>
-              </td>
+    <div className="flex flex-col min-h-screen justify-center items-center pb-40">
+      <TableStats userAssets={assets} />
+      <div className="overflow-x-auto relative my-20 border rounded-md shadow-md">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className="font-montserrat">
+              <th>Bonds</th>
+              <th>Investment</th>
+              <th>Yield</th>
+              <th>Trade</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {isPopupOpen && (
-        <TradeHistoryPopup
-          asset={selectedAsset}
-          onClose={() => {
-            setIsPopupOpen(false)
-            setSelectedAsset(null)
-          }}
-        />
-      )}
+          </thead>
+          <tbody>
+            {sortedItems.map((asset, index) => (
+              <tr key={index}>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-7 h-7 lg:w-16 lg:h-16">
+                        <img src={assetLogo(asset.userAsset)} alt="Asset Logo" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{asset.userAsset}</div>
+                      <div title="Asset Balance" className="text-sm opacity-50">
+                        {asset.balance}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                {/* 2 */}
+                <td>
+                  ${asset.totalInvestment.toFixed(2)}
+                  <br />
+                  <span title="Average Asset Price" className="badge badge-ghost badge-sm">
+                    ${asset.avgAssetPrice.toFixed(2)}
+                  </span>
+                </td>
+                {/* 3 */}
+                <th>
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => document.getElementById(`yield_${index}`).showModal()}
+                  >
+                    View
+                  </button>
+                  <dialog id={`yield_${index}`} className="modal">
+                    <div className="modal-box">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                          ✕
+                        </button>
+                      </form>
+                      <h3 className="font-montserrat text-lg text-center">Yield</h3>
+                      <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                    </div>
+                  </dialog>
+                </th>
+                {/* 4 */}
+                <th>
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => document.getElementById(`trade_history_${index}`).showModal()}
+                  >
+                    View
+                  </button>
+                  <dialog id={`trade_history_${index}`} className="modal">
+                    <div className="modal-box">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                          ✕
+                        </button>
+                      </form>
+                      <h3 className="font-montserrat text-lg text-center">TRADE HISTORY</h3>
+                      <TradeHistoryPopup userAsset={asset} />
+                    </div>
+                  </dialog>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

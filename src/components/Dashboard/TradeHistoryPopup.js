@@ -1,7 +1,6 @@
 import React from 'react'
-import './assets.css'
 
-export default function TradeHistoryPopup({ asset, onClose }) {
+export default function TradeHistoryPopup({ userAsset }) {
   function unixToTime(unixTime) {
     const date = new Date(unixTime * 1000)
     const day = date.getDate()
@@ -17,49 +16,45 @@ export default function TradeHistoryPopup({ asset, onClose }) {
     const formattedTime = `${day}/${month}/${year} ${hours}:${minutes.substr(-2)}:${seconds.substr(
       -2
     )}`
-
     return formattedTime
   }
 
-  const sortedTradeHistory = asset.tradeHistory
-    .slice() // Create a shallow copy
-    .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp))
-
-  console.log('sorted data:', sortedTradeHistory)
-
   return (
-    <div className="popup">
-      <div className="popup-content">
-        <div className="popup-table-container">
-          <table>
-            <caption>Trade History for {asset.userAsset}</caption>
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Units</th>
-                <th>Price/Asset</th>
-                <th>Time</th>
+    <div className="overflow-x-auto">
+      <table className="table table-xs lg:table-md">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Type</th>
+            <th>Units</th>
+            <th>Price/Asset</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userAsset.tradeHistory
+            .slice() // Create a shallow copy of the array
+            .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp)) // Sort based on converted timeStamp
+            .map((trade, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{trade.tradeType}</td>
+                <td>{trade.units}</td>
+                <td>${trade.pricePerAsset}</td>
+                <td>{unixToTime(trade.timeStamp)}</td>
               </tr>
-            </thead>
-            <tbody>
-              {asset.tradeHistory
-                .slice() // Create a shallow copy of the array
-                .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp)) // Sort based on converted timeStamp
-                .map((trade, index) => (
-                  <tr key={index}>
-                    <td>{trade.tradeType}</td>
-                    <td>{trade.units}</td>
-                    <td>${trade.pricePerAsset}</td>
-                    <td>{unixToTime(trade.timeStamp)}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-        <button className="close-button" onClick={onClose}>
-          X
-        </button>
-      </div>
+            ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th>Type</th>
+            <th>Units</th>
+            <th>Price/Asset</th>
+            <th>Time</th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   )
 }
