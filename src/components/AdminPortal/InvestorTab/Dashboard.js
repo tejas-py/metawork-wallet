@@ -99,10 +99,10 @@ export default function Dashboard() {
   }
 
   function TradeHistoryPopup({ investorAuthId }) {
-    // const tradeHistory = [
-    //   { asset: 'Genopets', trade_type: 'buy', amount: 10, price: 600, time: 1710623973 },
-    //   { asset: 'Genopets', trade_type: 'sell', amount: 22, price: 1200, time: 1710623990 },
-    // ]
+    const tradeHistory = [
+      { asset: 'Genopets', trade_type: 'buy', amount: 10, price: 600, time: 1710623973 },
+      { asset: 'Genopets', trade_type: 'sell', amount: 22, price: 1200, time: 1710623990 },
+    ]
     return (
       <dialog id={`trade_history_${investorAuthId}`} className="modal">
         <div className="modal-box">
