@@ -61,7 +61,6 @@ export default function CreateAuthToken() {
                     auth_id: String(authId),
                     wallet_address: `${accountAddress}`,
                     total_investments: 0,
-                    total_withdrawn: 0,
                     registration_date_time: null,
                     last_online: null,
                     total_yield: null,

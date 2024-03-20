@@ -68,11 +68,78 @@ export const investorDetails = async (wallet_address) => {
   }
 }
 
+export const allInvestorsDetails = async () => {
+  const config = {
+    method: 'get',
+    url: `${URL}/user/investors/`,
+  }
+
+  try {
+    const res = await axios(config)
+    if (res.status === 200) {
+      let returnRes = {
+        success: true,
+        data: res.data,
+      }
+
+      return returnRes
+    } else {
+      let returnRes = {
+        success: false,
+        data: { message: 'Error checking auth token' },
+      }
+      return returnRes
+    }
+  } catch (err) {
+    let returnRes = {
+      success: false,
+      data: err.response ? err.response.data : { message: 'Error: Network Error' },
+    }
+    return returnRes
+  }
+}
+
 export const loginInvestor = async (authId) => {
   const data = JSON.stringify({ auth_id: authId })
   const config = {
     method: 'patch',
     url: `${URL}/user/investor/login/`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: data,
+  }
+
+  try {
+    const res = await axios(config)
+    if (res.status === 200) {
+      let returnRes = {
+        success: true,
+        data: res.data,
+      }
+
+      return returnRes
+    } else {
+      let returnRes = {
+        success: false,
+        data: { message: 'Error creating investor' },
+      }
+      return returnRes
+    }
+  } catch (err) {
+    let returnRes = {
+      success: false,
+      data: err.response ? err.response.data : { message: 'Error: Network Error' },
+    }
+    return returnRes
+  }
+}
+
+export const changeNameInvestor = async (authId, name) => {
+  const data = JSON.stringify({ auth_id: authId, name: name })
+  const config = {
+    method: 'patch',
+    url: `${URL}/user/investor/change_name/`,
     headers: {
       'Content-Type': 'application/json',
     },

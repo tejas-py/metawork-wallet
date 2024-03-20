@@ -7,8 +7,8 @@ import genopetLogo from '../../assets/assetsLogo/genopets.png'
 
 export default function AssetsTable({ isConnectedToPeraWallet, accountAddress }) {
   const [assets, setAssets] = React.useState([])
-  const [filteredAssets, setFilteredAssets] = React.useState([])
-  const [sortConfig, setSortConfig] = React.useState({ key: null, direction: 'ascending' })
+  const [filteredAssets] = React.useState([])
+  const [sortConfig] = React.useState({ key: null, direction: 'ascending' })
 
   React.useEffect(() => {
     // Function to fetch user assets
@@ -86,7 +86,6 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
                     </div>
                   </div>
                 </td>
-                {/* 2 */}
                 <td>
                   ${asset.totalInvestment.toFixed(2)}
                   <br />
@@ -115,7 +114,6 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
                     </div>
                   </dialog>
                 </th>
-                {/* 4 */}
                 <th>
                   <button
                     className="btn btn-ghost btn-xs"
