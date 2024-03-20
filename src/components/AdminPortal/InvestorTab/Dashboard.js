@@ -1,21 +1,26 @@
 import React from 'react'
 import InvestorsList from './InvestorsList'
 import { useNavigate } from 'react-router-dom'
+import { allInvestorsTradeHistory } from '../../../backend/api'
 import editUserName from '../../../assets/edit-user-name.png'
 import epochToTime from '../../utils/epochToTime'
 import { toggleInvestorStatus } from '../../../backend/api'
 import { changeNameInvestor } from '../../../backend/api'
+import TradeHistory from './TradeHistory'
 
 export default function Dashboard() {
   const navigate = useNavigate()
   const [investorsStats, setStatsDetails] = React.useState([])
   const [investorDetail, setInvestorDetail] = React.useState([])
+  const [tradeHistory, setTradeHistory] = React.useState([])
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const data = await InvestorsList()
-      setStatsDetails(data)
-      setInvestorDetail(data.investors)
+      const investorData = await InvestorsList()
+      const tradeHistoryData = await allInvestorsTradeHistory()
+      setStatsDetails(investorData)
+      setInvestorDetail(investorData.investors)
+      setTradeHistory(tradeHistoryData)
     }
     fetchData()
   }, [navigate])
@@ -93,6 +98,25 @@ export default function Dashboard() {
     )
   }
 
+  function TradeHistoryPopup({ investorAuthId }) {
+    // const tradeHistory = [
+    //   { asset: 'Genopets', trade_type: 'buy', amount: 10, price: 600, time: 1710623973 },
+    //   { asset: 'Genopets', trade_type: 'sell', amount: 22, price: 1200, time: 1710623990 },
+    // ]
+    return (
+      <dialog id={`trade_history_${investorAuthId}`} className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <h3 className="font-montserrat text-lg text-center">TRADE HISTORY</h3>
+          <TradeHistory tradeHistory={tradeHistory} />
+        </div>
+      </dialog>
+    )
+  }
+
   function InvestorsTable() {
     return (
       <div className="overflow-x-auto border rounded-md shadow-lg mt-12">
@@ -103,6 +127,7 @@ export default function Dashboard() {
               <th>Name</th>
               <th>Total Invested</th>
               <th>Last Online</th>
+              <th>Trade History</th>
               <th>Block/Unblock</th>
             </tr>
           </thead>
@@ -154,6 +179,18 @@ export default function Dashboard() {
                   </span>
                 </td>
                 {/* 4 */}
+                <th>
+                  <button
+                    className="btn btn-ghost btn-xs font-montserrat"
+                    onClick={() =>
+                      document.getElementById(`trade_history_${investor.auth_id}`).showModal()
+                    }
+                  >
+                    View
+                  </button>
+                  <TradeHistoryPopup investorAuthId={investor.auth_id} />
+                </th>
+                {/* 5 */}
                 <th>
                   <button
                     className="btn btn-ghost btn-xs text-red-500 font-montserrat"

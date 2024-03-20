@@ -99,6 +99,37 @@ export const allInvestorsDetails = async () => {
   }
 }
 
+export const allInvestorsTradeHistory = async () => {
+  const config = {
+    method: 'get',
+    url: `${URL}/user/investors/trade_history`,
+  }
+
+  try {
+    const res = await axios(config)
+    if (res.status === 200) {
+      let returnRes = {
+        success: true,
+        data: res.data,
+      }
+
+      return returnRes
+    } else {
+      let returnRes = {
+        success: false,
+        data: { message: 'Error getting the Trade History' },
+      }
+      return returnRes
+    }
+  } catch (err) {
+    let returnRes = {
+      success: false,
+      data: err.response ? err.response.data : { message: 'Error: Network Error' },
+    }
+    return returnRes
+  }
+}
+
 export const loginInvestor = async (authId) => {
   const data = JSON.stringify({ auth_id: authId })
   const config = {
