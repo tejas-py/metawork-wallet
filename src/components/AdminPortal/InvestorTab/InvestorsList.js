@@ -12,11 +12,10 @@ export default async function InvestorsList() {
     block: investor.blocked,
   }))
 
-  
   // Calculate the total investments and total withdrawals of all investors
   const totalInvestments = investors.reduce((acc, investor) => acc + investor.total_investments, 0)
-  const totalWithdrawals = investors.reduce((acc, investor) => acc + investor.total_withdrawn, 0)
-
+  const currentInvestments = 0
+  const totalYield = 0
   // Get the total number of investors
   const totalNumberOfInvestors = investors.length
 
@@ -24,7 +23,8 @@ export default async function InvestorsList() {
     investors,
     blockInvestorsData,
     totalInvestments,
-    totalWithdrawals,
+    currentInvestments,
+    totalYield,
     totalNumberOfInvestors,
   }
 }

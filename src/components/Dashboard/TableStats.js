@@ -7,7 +7,7 @@ export default function TableStats({ userAssets }) {
       const assetInvestment = userAssets[i].totalInvestment
       investment += assetInvestment
     }
-    return investment
+    return investment.toFixed(2)
   }
 
   return (

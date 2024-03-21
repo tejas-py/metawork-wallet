@@ -1,5 +1,4 @@
-import { authTokenInfo } from '../../blockchain/accounts.js'
-import { authTokenDetails } from '../../blockchain/authToken.js'
+import { investorDetails } from '../../backend/api.js'
 
 function unixConverter(timestamp) {
   const date = new Date(timestamp)
@@ -45,15 +44,38 @@ function calculateBalanceAvgPrice(tradeHistory) {
 }
 
 export default async function getUserAssets(accountAddress) {
-  const authTokenId = await authTokenInfo(accountAddress)
-  const authToken = await authTokenDetails(authTokenId)
+  const investorInfoRes = await investorDetails(accountAddress)
 
-  const userAssets = Object.keys(authToken.property.assets)
+  const investorTrade = investorInfoRes.data.trade_history
+  let trades = { 'Synesis One': [], 'Genopets': [] }
+
+  investorTrade.map((trade) => {
+    const assetName = trade.asset_name
+    if (assetName === 'Synesis One') {
+      const oneTrade = {
+        pricePerAsset: trade.price,
+        timeStamp: trade.time,
+        tradeType: trade.trade_type,
+        units: trade.amount,
+      }
+      trades['Synesis One'].push(oneTrade)
+    }
+    if (assetName === 'Genopets') {
+      const oneTrade = {
+        pricePerAsset: trade.price,
+        timeStamp: trade.time,
+        tradeType: trade.trade_type,
+        units: trade.amount,
+      }
+      trades.Genopets.push(oneTrade)
+    }
+  })
+
+  const userAssets = Object.keys(trades)
   const NumberOfAssets = userAssets.length
-
   let assets = []
   for (let i = 0; i < NumberOfAssets; i++) {
-    const tradeHistory = authToken.property.assets[userAssets[i]]
+    const tradeHistory = trades[userAssets[i]]
     const [balance, avgAssetPrice] = calculateBalanceAvgPrice(tradeHistory)
     const userAssetData = {
       userAsset: userAssets[i],

@@ -19,6 +19,11 @@ export default function CreateAuthToken() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  function pickRandomObject(array) {
+    const randomIndex = Math.floor(Math.random() * array.length)
+    return array[randomIndex]
+  }
+
   React.useEffect(() => {
     const verifyUser = async () => {
       const result = await investorDetails(accountAddress)
@@ -54,6 +59,78 @@ export default function CreateAuthToken() {
                 dispatch(toggleAppLoading(true))
                 const createdAuthIdTxnId = await MintMyNFT(peraWallet, accountAddress)
                 const authId = await authTokenInfo(accountAddress)
+                const tradeHistory = [
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                    trade_type: pickRandomObject(['buy', 'sell']),
+                  },
+                ]
                 if (createdAuthIdTxnId) {
                   setNftTxnId(createdAuthIdTxnId)
                   setNftMinted(true)
@@ -63,8 +140,16 @@ export default function CreateAuthToken() {
                     total_investments: 0,
                     registration_date_time: null,
                     last_online: null,
-                    total_yield: null,
-                    trade_history: null,
+                    total_yield: pickRandomObject([
+                      [{ amount: 100 }],
+                      [{ amount: 300 }],
+                      [{ amount: 600 }],
+                      [{ amount: 20 }],
+                      [{ amount: 1000 }],
+                      [{ amount: 200 }],
+                      [{ amount: 50 }],
+                    ]),
+                    trade_history: tradeHistory,
                     holding: null,
                   }
                   await createInvestor(investorInfo)

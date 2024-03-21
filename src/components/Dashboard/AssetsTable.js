@@ -110,7 +110,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
                         </button>
                       </form>
                       <h3 className="font-montserrat text-lg text-center">Yield</h3>
-                      <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                      <p className="py-4 font-montserrat text-center">COMING SOON</p>
                     </div>
                   </dialog>
                 </th>

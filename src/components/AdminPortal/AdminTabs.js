@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import Dashboard from './InvestorTab/Dashboard'
+import InvestorDashboard from './InvestorTab/InvestorDashboard'
+import AnalyticsDashboard from './AnalyticsTab/AnalyticsDashboard'
+import AssetDashboard from './AssetTab/AssetDashboard'
 import '../../app.css'
 
 export default function AdminTab() {
   // State to manage the selected tab, defaulting to the tab you want to be selected on initial render
-  const [selectedTab, setSelectedTab] = useState('Investors')
+  const [selectedTab, setSelectedTab] = useState('Assets')
 
   return (
     <div role="tablist" className="tabs tabs-lifted relative top-24 mx-6 mb-11">
@@ -18,7 +20,7 @@ export default function AdminTab() {
         onChange={() => setSelectedTab('Assets')}
       />
       <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        Tab content 1
+        <AssetDashboard />
       </div>
 
       <input
@@ -31,7 +33,7 @@ export default function AdminTab() {
         onChange={() => setSelectedTab('Investors')}
       />
       <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <Dashboard />
+        <InvestorDashboard />
       </div>
 
       <input
@@ -57,7 +59,20 @@ export default function AdminTab() {
         onChange={() => setSelectedTab('Analytics')}
       />
       <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        Tab content 4
+        <AnalyticsDashboard />
+      </div>
+
+      <input
+        type="radio"
+        name="my_tabs_2"
+        role="tab"
+        className="tab"
+        aria-label="MetaWorkers"
+        checked={selectedTab === 'MetaWorkers'}
+        onChange={() => setSelectedTab('MetaWorkers')}
+      />
+      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+        Tab content 5
       </div>
     </div>
   )

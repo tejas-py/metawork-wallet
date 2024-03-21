@@ -8,7 +8,7 @@ import { toggleInvestorStatus } from '../../../backend/api'
 import { changeNameInvestor } from '../../../backend/api'
 import TradeHistory from './TradeHistory'
 
-export default function Dashboard() {
+export default function InvestorDashboard() {
   const navigate = useNavigate()
   const [investorsStats, setStatsDetails] = React.useState([])
   const [investorDetail, setInvestorDetail] = React.useState([])
@@ -17,12 +17,38 @@ export default function Dashboard() {
   React.useEffect(() => {
     const fetchData = async () => {
       const investorData = await InvestorsList()
-      const tradeHistoryData = await allInvestorsTradeHistory()
       setStatsDetails(investorData)
       setInvestorDetail(investorData.investors)
-      setTradeHistory(tradeHistoryData)
     }
+
+    const fetchTrade = async () => {
+      const res = await allInvestorsTradeHistory()
+      const allInvestorsTrades = res.data.message
+      const allAuthId = {}
+
+      allInvestorsTrades.forEach((trade) => {
+        // Check if the investor_id already exists in allAuthId
+        if (!allAuthId.hasOwnProperty(trade.investors_id)) {
+          // If not, initialize it with an empty array
+          allAuthId[trade.investors_id] = []
+        }
+
+        if (allAuthId.hasOwnProperty(trade.investors_id)) {
+          // Push the new trade into the array for the investor
+          allAuthId[trade.investors_id].push({
+            asset: trade.asset_name,
+            price: trade.price,
+            time: trade.time,
+            trade_type: trade.trade_type,
+            amount: trade.amount,
+          })
+        }
+      })
+      setTradeHistory(allAuthId)
+    }
+
     fetchData()
+    fetchTrade()
   }, [navigate])
 
   function Tooltip({ tooltip, tooltipCode }) {
@@ -50,7 +76,7 @@ export default function Dashboard() {
 
         <div className="stat">
           <div className="stat-title">Total Yield</div>
-          <div className="stat-value">{investorsStats.totalWithdrawals}</div>
+          <div className="stat-value">$0</div>
           <div className="stat-desc text-red-600">↘︎ $90 (14%) - weekly</div>
         </div>
       </div>
@@ -99,9 +125,10 @@ export default function Dashboard() {
   }
 
   function TradeHistoryPopup({ investorAuthId }) {
-    const tradeHistory = [
-      { asset: 'Genopets', trade_type: 'buy', amount: 10, price: 600, time: 1710623973 },
-      { asset: 'Genopets', trade_type: 'sell', amount: 22, price: 1200, time: 1710623990 },
+    // const tradeHistoryByInvestor = tradeHistory[investorAuthId]
+    const tradeHistoryByInvestor = [
+      { asset: 'Genopets', trade_type: 'buy', amount: 10, price: 200, time: 1711046702 },
+      { asset: 'Synesis One', trade_type: 'buy', amount: 10, price: 200, time: 1711099000 },
     ]
     return (
       <dialog id={`trade_history_${investorAuthId}`} className="modal">
@@ -111,7 +138,7 @@ export default function Dashboard() {
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
           <h3 className="font-montserrat text-lg text-center">TRADE HISTORY</h3>
-          <TradeHistory tradeHistory={tradeHistory} />
+          <TradeHistory tradeHistory={tradeHistoryByInvestor} />
         </div>
       </dialog>
     )
@@ -164,7 +191,7 @@ export default function Dashboard() {
                   ${investor.total_investments}
                   <br />
                   <span className="badge badge-ghost badge-sm">
-                    <Tooltip tooltip={'Total Yield'} tooltipCode={`$${investor.total_withdrawn}`} />
+                    <Tooltip tooltip={'Total Yield'} tooltipCode={`$0`} />
                   </span>
                 </td>
                 {/* 3 */}

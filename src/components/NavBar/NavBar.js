@@ -17,8 +17,13 @@ export default function NavBar({
   React.useEffect(() => {
     async function fetchAdminStatus() {
       const connectedUserDetails = await investorDetails(accountAddress)
-      const userType = connectedUserDetails.data.message.user_type
-      setIsAdmin(userType === 'admin')
+
+      if (connectedUserDetails.success === true) {
+        const userType = connectedUserDetails.data.message.user_type
+        setIsAdmin(userType === 'admin')
+      } else {
+        setIsAdmin(false)
+      }
     }
     if (accountAddress) {
       fetchAdminStatus()

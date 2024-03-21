@@ -9,7 +9,7 @@ export default async function HandleAuthToken(walletAddress, navigate) {
     await loginInvestor(auth_id)
   }
 
-  if (result.data.message.user_type) {
+  if (result.success === true) {
     if (result.data.message.user_type === 'investor') {
       await backendLogin()
       navigate('/dashboard')
