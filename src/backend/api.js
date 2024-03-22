@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = 'http://54.193.206.243'
+const URL = 'https://www.dcdindia.in'
 
 export const createInvestor = async (info) => {
   const data = JSON.stringify(info)
