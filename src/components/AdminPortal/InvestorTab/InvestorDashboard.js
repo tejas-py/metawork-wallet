@@ -1,7 +1,7 @@
 import React from 'react'
 import InvestorsList from './InvestorsList'
 import { useNavigate } from 'react-router-dom'
-import { allInvestorsTradeHistory } from '../../../backend/api'
+// import { allInvestorsTradeHistory } from '../../../backend/api'
 import editUserName from '../../../assets/edit-user-name.png'
 import epochToTime from '../../utils/epochToTime'
 import { toggleInvestorStatus } from '../../../backend/api'
@@ -12,7 +12,7 @@ export default function InvestorDashboard() {
   const navigate = useNavigate()
   const [investorsStats, setStatsDetails] = React.useState([])
   const [investorDetail, setInvestorDetail] = React.useState([])
-  const [tradeHistory, setTradeHistory] = React.useState([])
+  // const [tradeHistory, setTradeHistory] = React.useState([])
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -21,34 +21,34 @@ export default function InvestorDashboard() {
       setInvestorDetail(investorData.investors)
     }
 
-    const fetchTrade = async () => {
-      const res = await allInvestorsTradeHistory()
-      const allInvestorsTrades = res.data.message
-      const allAuthId = {}
+    // const fetchTrade = async () => {
+    //   const res = await allInvestorsTradeHistory()
+    //   const allInvestorsTrades = res.data.message
+    //   const allAuthId = {}
 
-      allInvestorsTrades.forEach((trade) => {
-        // Check if the investor_id already exists in allAuthId
-        if (!allAuthId.hasOwnProperty(trade.investors_id)) {
-          // If not, initialize it with an empty array
-          allAuthId[trade.investors_id] = []
-        }
+    //   allInvestorsTrades.forEach((trade) => {
+    //     // Check if the investor_id already exists in allAuthId
+    //     if (!allAuthId.hasOwnProperty(trade.investors_id)) {
+    //       // If not, initialize it with an empty array
+    //       allAuthId[trade.investors_id] = []
+    //     }
 
-        if (allAuthId.hasOwnProperty(trade.investors_id)) {
-          // Push the new trade into the array for the investor
-          allAuthId[trade.investors_id].push({
-            asset: trade.asset_name,
-            price: trade.price,
-            time: trade.time,
-            trade_type: trade.trade_type,
-            amount: trade.amount,
-          })
-        }
-      })
-      setTradeHistory(allAuthId)
-    }
+    //     if (allAuthId.hasOwnProperty(trade.investors_id)) {
+    //       // Push the new trade into the array for the investor
+    //       allAuthId[trade.investors_id].push({
+    //         asset: trade.asset_name,
+    //         price: trade.price,
+    //         time: trade.time,
+    //         trade_type: trade.trade_type,
+    //         amount: trade.amount,
+    //       })
+    //     }
+    //   })
+    //   setTradeHistory(allAuthId)
+    // }
 
     fetchData()
-    fetchTrade()
+    // fetchTrade()
   }, [navigate])
 
   function Tooltip({ tooltip, tooltipCode }) {

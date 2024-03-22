@@ -49,7 +49,7 @@ export default async function getUserAssets(accountAddress) {
   const investorTrade = investorInfoRes.data.trade_history
   let trades = { 'Synesis One': [], 'Genopets': [] }
 
-  investorTrade.map((trade) => {
+  investorTrade.forEach((trade) => {
     const assetName = trade.asset_name
     if (assetName === 'Synesis One') {
       const oneTrade = {

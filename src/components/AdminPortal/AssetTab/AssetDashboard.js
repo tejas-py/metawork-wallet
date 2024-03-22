@@ -126,10 +126,6 @@ export default function AssetDashboard() {
     chart.render()
   }
 
-  function Skeleton() {
-    return <div className="skeleton w-32 h-32"></div>
-  }
-
   return (
     <div className="flex flex-col justify-center">
       <Stats />
