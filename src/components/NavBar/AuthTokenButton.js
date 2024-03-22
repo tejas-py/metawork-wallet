@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
 import { investorDetails } from '../../backend/api.js'
-import '../../app.css'
 
 async function assetId(walletAddress) {
   const investorInfo = await investorDetails(walletAddress)

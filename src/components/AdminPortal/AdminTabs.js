@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import InvestorDashboard from './InvestorTab/InvestorDashboard'
 import AnalyticsDashboard from './AnalyticsTab/AnalyticsDashboard'
 import AssetDashboard from './AssetTab/AssetDashboard'
-import '../../app.css'
 
 export default function AdminTab() {
   // State to manage the selected tab, defaulting to the tab you want to be selected on initial render

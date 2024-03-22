@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleAppLoading } from '../../store/slices/LoadinAndNotifSlice.js'
 import HandleAuthToken from './HandleAuthToken.js'
-import '../../app.css'
 
 export default function HandleLogin({
   isConnectedToPeraWallet,

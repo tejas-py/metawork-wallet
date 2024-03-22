@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../../assets/logo-nobg.png'
-import '../../app.css'
 
 export default function Footer() {
   return (

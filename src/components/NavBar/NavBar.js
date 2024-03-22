@@ -4,7 +4,6 @@ import SwitchView from './SwitchView'
 import AuthTokenButton from './AuthTokenButton'
 import WalletAddressButton from './WalletAddressButton'
 import { investorDetails } from '../../backend/api'
-import '../../app.css'
 
 export default function NavBar({
   accountAddress,
