@@ -8,7 +8,6 @@ import { authTokenInfo } from '../blockchain/accounts.js'
 import { investorDetails } from '../backend/api.js'
 import PeraWallet from '../components/PeraWallet/PeraWallet.js'
 import NavBar from '../components/NavBar/NavBar.js'
-import '../app.css'
 
 export default function CreateAuthToken() {
   const [peraWallet, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] =
