@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = 'http://127.0.0.1:8000'
+const URL = 'http://54.193.206.243'
 
 export const createInvestor = async (info) => {
   const data = JSON.stringify(info)
