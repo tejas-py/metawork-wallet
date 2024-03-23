@@ -61,7 +61,7 @@ export default function CreateAuthToken() {
                 const tradeHistory = [
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -71,7 +71,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -81,7 +81,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -91,7 +91,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -101,7 +101,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -111,7 +111,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -121,7 +121,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    amount: pickRandomObject([10, 20, 2, 5, 25]),
+                    amount: pickRandomObject([1, 2, 3, 4]),
                     price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
@@ -133,7 +133,7 @@ export default function CreateAuthToken() {
                 const investorYield = [
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    units: pickRandomObject([10, 20, 35, 40, 5, 2, 11, 45, 1]),
+                    units: pickRandomObject([1, 2, 3, 4]),
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
@@ -141,7 +141,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    units: pickRandomObject([10, 20, 35, 40, 5, 2, 11, 45, 1]),
+                    units: pickRandomObject([1, 2, 3, 4]),
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
@@ -149,7 +149,7 @@ export default function CreateAuthToken() {
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
-                    units: pickRandomObject([10, 20, 35, 40, 5, 2, 11, 45, 1]),
+                    units: pickRandomObject([1, 2, 3, 4]),
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
