@@ -1,6 +1,14 @@
 import React from 'react'
 
-export default function TableStats({ userAssets }) {
+export default function TableStats({ userAssets, yieldHistory }) {
+  function yieldAmount() {
+    let yieldAmount = 0
+    yieldHistory.forEach((history) => {
+      yieldAmount += history.units
+    })
+    return yieldAmount
+  }
+
   function totalInvestment() {
     let investment = 0
     for (let i = 0, l = userAssets.length; i < l; i++) {
@@ -49,7 +57,7 @@ export default function TableStats({ userAssets }) {
           </svg>
         </div>
         <div className="stat-title font-montserrat">Yield</div>
-        <div className="stat-value font-montserrat">$0</div>
+        <div className="stat-value font-montserrat">${yieldAmount()}</div>
       </div>
     </div>
   )

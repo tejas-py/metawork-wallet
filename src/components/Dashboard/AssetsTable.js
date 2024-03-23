@@ -1,5 +1,7 @@
 import React from 'react'
+import { investorDetails } from '../../backend/api'
 import TradeHistoryPopup from './TradeHistoryPopup'
+import YieldPopup from './YieldPopup'
 import TableStats from './TableStats'
 import getUserAssets from './userAssets'
 import synesisLogo from '../../assets/assetsLogo/synesis.png'
@@ -7,6 +9,7 @@ import genopetLogo from '../../assets/assetsLogo/genopets.png'
 
 export default function AssetsTable({ isConnectedToPeraWallet, accountAddress }) {
   const [assets, setAssets] = React.useState([])
+  const [investorYield, setInvestorYield] = React.useState([])
   const [filteredAssets] = React.useState([])
   const [sortConfig] = React.useState({ key: null, direction: 'ascending' })
 
@@ -22,8 +25,17 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
         }
       }
     }
+    // Fetch Yield
+    const fetchYield = async () => {
+      if (isConnectedToPeraWallet) {
+        const res = await investorDetails(accountAddress)
+        const allYield = res.data.total_yield
+        setInvestorYield(allYield)
+      }
+    }
     // Call fetchData for initial load
     fetchData()
+    fetchYield()
   }, [isConnectedToPeraWallet, accountAddress, assets])
 
   const sortedItems = React.useMemo(() => {
@@ -56,7 +68,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center pb-40">
-      <TableStats userAssets={assets} />
+      <TableStats userAssets={assets} yieldHistory={investorYield} />
       <div className="overflow-x-auto relative my-20 border rounded-md shadow-md">
         <table className="table">
           {/* head */}
@@ -110,7 +122,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
                         </button>
                       </form>
                       <h3 className="font-montserrat text-lg text-center">Yield</h3>
-                      <p className="py-4 font-montserrat text-center">COMING SOON</p>
+                      <YieldPopup yieldHistory={investorYield} currentAssetName={asset.userAsset} />
                     </div>
                   </dialog>
                 </th>

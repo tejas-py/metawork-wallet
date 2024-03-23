@@ -62,72 +62,98 @@ export default function CreateAuthToken() {
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
                   },
                   {
                     asset_name: pickRandomObject(['Genopets', 'Synesis One']),
                     amount: pickRandomObject([10, 20, 2, 5, 25]),
-                    price: pickRandomObject([600, 200, 1200, 2400, 3600]),
+                    price: 200,
                     time: pickRandomObject([
                       1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
                       1709837934,
                     ]),
-                    trade_type: pickRandomObject(['buy', 'sell']),
+                    trade_type: pickRandomObject(['buy', 'buy', 'buy', 'sell']),
+                  },
+                ]
+                const investorYield = [
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    units: pickRandomObject([10, 20, 35, 40, 5, 2, 11, 45, 1]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    units: pickRandomObject([10, 20, 35, 40, 5, 2, 11, 45, 1]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
+                  },
+                  {
+                    asset_name: pickRandomObject(['Genopets', 'Synesis One']),
+                    units: pickRandomObject([10, 20, 35, 40, 5, 2, 11, 45, 1]),
+                    time: pickRandomObject([
+                      1710623973, 1710782220, 1710781251, 1710851154, 1711026187, 1710851085,
+                      1709837934,
+                    ]),
                   },
                 ]
                 if (createdAuthIdTxnId) {
@@ -139,15 +165,7 @@ export default function CreateAuthToken() {
                     total_investments: 0,
                     registration_date_time: null,
                     last_online: null,
-                    total_yield: pickRandomObject([
-                      [{ amount: 100 }],
-                      [{ amount: 300 }],
-                      [{ amount: 600 }],
-                      [{ amount: 20 }],
-                      [{ amount: 1000 }],
-                      [{ amount: 200 }],
-                      [{ amount: 50 }],
-                    ]),
+                    total_yield: investorYield,
                     trade_history: tradeHistory,
                     holding: null,
                   }
