@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = 'https://www.dcdindia.in'
+const URL = 'https://devmetawork.securetool.company'
 
 export const createInvestor = async (info) => {
   const data = JSON.stringify(info)
