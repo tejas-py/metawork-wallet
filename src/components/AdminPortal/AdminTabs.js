@@ -5,7 +5,7 @@ import AssetDashboard from './AssetTab/AssetDashboard'
 
 export default function AdminTab() {
   // State to manage the selected tab, defaulting to the tab you want to be selected on initial render
-  const [selectedTab, setSelectedTab] = useState('Assets')
+  const [selectedTab, setSelectedTab] = useState('Investors')
 
   return (
     <div role="tablist" className="tabs tabs-lifted relative top-24 mx-6 mb-11">

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TradeHistory({ tradeHistory }) {
+function TradeHistory({ tradeHistory }) {
   function unixToTime(unixTime) {
     const date = new Date(unixTime * 1000)
     const day = date.getDate()
@@ -35,7 +35,7 @@ export default function TradeHistory({ tradeHistory }) {
         <tbody>
           {tradeHistory
             .slice() // Create a shallow copy of the array
-            .sort((a, b) => new Date(a.timeStamp) - new Date(b.timeStamp)) // Sort based on converted timeStamp
+            .sort((a, b) => new Date(a.time) - new Date(b.time)) // Sort based on converted timeStamp
             .map((trade, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
@@ -59,5 +59,22 @@ export default function TradeHistory({ tradeHistory }) {
         </tfoot>
       </table>
     </div>
+  )
+}
+
+export default function TradeHistoryPopup({ tradeHistory, investorAuthId }) {
+  const tradeHistoryByInvestor = tradeHistory[investorAuthId]
+
+  return (
+    <dialog id={`trade_history_${investorAuthId}`} className="modal">
+      <div className="modal-box">
+        <form method="dialog">
+          {/* if there is a button in form, it will close the modal */}
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <h3 className="font-montserrat text-lg text-center">TRADE HISTORY</h3>
+        <TradeHistory tradeHistory={tradeHistoryByInvestor} />
+      </div>
+    </dialog>
   )
 }

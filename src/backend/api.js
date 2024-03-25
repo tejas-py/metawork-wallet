@@ -1,5 +1,6 @@
 import axios from 'axios'
 const URL = 'https://devmetawork.securetool.company'
+// const URL = 'http://localhost:8000'
 
 export const createInvestor = async (info) => {
   const data = JSON.stringify(info)
@@ -118,6 +119,37 @@ export const allInvestorsTradeHistory = async () => {
       let returnRes = {
         success: false,
         data: { message: 'Error getting the Trade History' },
+      }
+      return returnRes
+    }
+  } catch (err) {
+    let returnRes = {
+      success: false,
+      data: err.response ? err.response.data : { message: 'Error: Network Error' },
+    }
+    return returnRes
+  }
+}
+
+export const allInvestorsTotalYield = async () => {
+  const config = {
+    method: 'get',
+    url: `${URL}/user/investors/yield`,
+  }
+
+  try {
+    const res = await axios(config)
+    if (res.status === 200) {
+      let returnRes = {
+        success: true,
+        data: res.data,
+      }
+
+      return returnRes
+    } else {
+      let returnRes = {
+        success: false,
+        data: { message: 'Error getting the total yield' },
       }
       return returnRes
     }
