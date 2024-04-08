@@ -1,18 +1,18 @@
-import { userDetails } from '../../backend/api.js'
-import { loginUser } from '../../backend/api.js'
+import { investorDetails } from '../../backend/api.js'
+import { loginInvestor } from '../../backend/api.js'
 
 export default async function HandleAuthToken(walletAddress, navigate) {
-  const result = await userDetails(walletAddress)
+  const result = await investorDetails(walletAddress)
 
   async function backendLogin() {
     const auth_id = result.data.message.auth_id
-    await loginUser(auth_id)
+    await loginInvestor(auth_id)
   }
 
   if (result.success === true) {
     if (result.data.message.user_type === 'investor') {
       await backendLogin()
-      navigate('/investors/dashboard')
+      navigate('/dashboard')
     }
     if (result.data.message.user_type === 'admin') {
       await backendLogin()

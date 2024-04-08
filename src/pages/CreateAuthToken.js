@@ -2,9 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleAppLoading } from '../store/slices/LoadinAndNotifSlice.js'
+import { createInvestor } from '../backend/api.js'
 import MintMyNFT from '../components/CreateAuthToken/MintMyNFT.js'
 import { authTokenInfo } from '../blockchain/accounts.js'
-import { userDetails, createUser } from '../backend/api.js'
+import { investorDetails } from '../backend/api.js'
 import PeraWallet from '../components/PeraWallet/PeraWallet.js'
 import NavBar from '../components/NavBar/NavBar.js'
 
@@ -13,7 +14,6 @@ export default function CreateAuthToken() {
     PeraWallet()
   const [nftMinted, setNftMinted] = React.useState(false)
   const [nftTxnId, setNftTxnId] = React.useState('')
-  const [selectedUserType, setSelectedUserType] = React.useState('')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -25,10 +25,10 @@ export default function CreateAuthToken() {
 
   React.useEffect(() => {
     const verifyUser = async () => {
-      const result = await userDetails(accountAddress)
+      const result = await investorDetails(accountAddress)
 
       if (result.data.message.user_type === 'investor') {
-        navigate('/investors/dashboard')
+        navigate('/dashboard')
       }
 
       if (result.data.message.user_type === 'admin') {
@@ -37,29 +37,6 @@ export default function CreateAuthToken() {
     }
     verifyUser()
   }, [navigate, accountAddress, isConnectedToPeraWallet])
-
-  function UserTypeForm() {
-    // Event handler to update the selected option state.
-    const handleSelectChange = (event) => {
-      setSelectedUserType(event.target.value)
-    }
-    return (
-      <label className="relative form-control my-4 w-full max-w-xs left-1/2 -translate-x-1/2">
-        <select
-          className="select select-accent text-neutral"
-          onChange={handleSelectChange}
-          defaultValue={selectedUserType}
-        >
-          <option disabled value="">
-            Please select your User Type!
-          </option>
-          <option value="investor">Investor</option>
-          <option value="metaworker">MetaWorker</option>
-          <option value="both">Both</option>
-        </select>
-      </label>
-    )
-  }
 
   return (
     <>
@@ -75,10 +52,8 @@ export default function CreateAuthToken() {
               This will create your own personalized NFT for the platform. You will then use this
               NFT login to the system.
             </p>
-            <UserTypeForm />
             <button
-              className="btn btn-accent btn-md font-montserrat text-base-100 px-10"
-              disabled={!selectedUserType}
+              className="btn btn-accent btn-md font-montserrat text-base-100 mt-4 px-10"
               onClick={async () => {
                 dispatch(toggleAppLoading(true))
                 const createdAuthIdTxnId = await MintMyNFT(peraWallet, accountAddress)
@@ -184,7 +159,7 @@ export default function CreateAuthToken() {
                 if (createdAuthIdTxnId) {
                   setNftTxnId(createdAuthIdTxnId)
                   setNftMinted(true)
-                  const userInfo = {
+                  const investorInfo = {
                     auth_id: String(authId),
                     wallet_address: `${accountAddress}`,
                     total_investments: 0,
@@ -193,9 +168,8 @@ export default function CreateAuthToken() {
                     total_yield: investorYield,
                     trade_history: tradeHistory,
                     holding: null,
-                    user_type: selectedUserType,
                   }
-                  await createUser(userInfo)
+                  await createInvestor(investorInfo)
                 }
                 dispatch(toggleAppLoading(false))
               }}
@@ -210,7 +184,7 @@ export default function CreateAuthToken() {
               className="btn btn-accent btn-md font-montserrat text-base-100 mt-4 px-10"
               onClick={() => {
                 window.open(`https://app.dappflow.org/explorer/transaction/${nftTxnId}`, '_blank')
-                navigate('/investors/dashboard')
+                navigate('/dashboard')
               }}
             >
               View

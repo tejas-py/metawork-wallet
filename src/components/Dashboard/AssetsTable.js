@@ -1,5 +1,5 @@
 import React from 'react'
-import { userDetails } from '../../backend/api'
+import { investorDetails } from '../../backend/api'
 import TradeHistoryPopup from './TradeHistoryPopup'
 import YieldPopup from './YieldPopup'
 import TableStats from './TableStats'
@@ -28,7 +28,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     // Fetch Yield
     const fetchYield = async () => {
       if (isConnectedToPeraWallet) {
-        const res = await userDetails(accountAddress)
+        const res = await investorDetails(accountAddress)
         const allYield = res.data.total_yield
         setInvestorYield(allYield)
       }
