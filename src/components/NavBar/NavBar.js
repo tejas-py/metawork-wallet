@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import SwitchView from './SwitchView'
 import AuthTokenButton from './AuthTokenButton'
 import WalletAddressButton from './WalletAddressButton'
-import { investorDetails } from '../../backend/api'
+import { userDetails } from '../../backend/api'
 
 export default function NavBar({
   accountAddress,
@@ -15,7 +15,7 @@ export default function NavBar({
 
   React.useEffect(() => {
     async function fetchAdminStatus() {
-      const connectedUserDetails = await investorDetails(accountAddress)
+      const connectedUserDetails = await userDetails(accountAddress)
       if (connectedUserDetails.success === true) {
         const userType = connectedUserDetails.data.message.user_type
         setIsAdmin(userType === 'admin')
@@ -37,7 +37,7 @@ export default function NavBar({
         <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">Registration</h1>
       )
     }
-    if (location.pathname === '/dashboard') {
+    if (location.pathname === '/investors/dashboard') {
       return (
         <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">User Portal</h1>
       )

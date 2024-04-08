@@ -1,4 +1,4 @@
-import { investorDetails } from '../../backend/api.js'
+import { userDetails } from '../../backend/api.js'
 
 function unixConverter(timestamp) {
   const date = new Date(timestamp)
@@ -44,7 +44,7 @@ function calculateBalanceAvgPrice(tradeHistory) {
 }
 
 export default async function getUserAssets(accountAddress) {
-  const investorInfoRes = await investorDetails(accountAddress)
+  const investorInfoRes = await userDetails(accountAddress)
 
   const investorTrade = investorInfoRes.data.trade_history
   let trades = { 'Synesis One': [], 'Genopets': [] }

@@ -16,14 +16,16 @@ import './app.css'
 import Layout from './Layout'
 import Login from './pages/Login'
 import CreateAuthToken from './pages/CreateAuthToken'
-import Dashboard from './pages/Dashboard'
+import InvestorsDashboard from './pages/InvestorsDashboard'
+import MetaworkersDashboard from './pages/MetaworkersDashboard'
 import AdminPortal from './pages/AdminPortal'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Login />} />
-      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="metaworkers/dashboard" element={<MetaworkersDashboard />} />
+      <Route path="investors/dashboard" element={<InvestorsDashboard />} />
       <Route path="adminPortal" element={<AdminPortal />} />
       <Route path="createAuthToken" element={<CreateAuthToken />} />
     </Route>

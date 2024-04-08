@@ -7,18 +7,19 @@ export default function SwitchView({ isAdmin }) {
   const navigate = useNavigate()
   const location = useLocation()
   const isVisible =
-    isAdmin && (location.pathname === '/dashboard' || location.pathname === '/adminPortal')
+    isAdmin &&
+    (location.pathname === '/investors/dashboard' || location.pathname === '/adminPortal')
 
   return (
     <button
       className="btn btn-accent btn-sm lg:btn-md rounded-2xl bg-base-100 border-none px-2 lg:px-3"
       style={{ display: isVisible ? '' : 'none' }}
       onClick={() => {
-        if (location.pathname === '/dashboard') {
+        if (location.pathname === '/investors/dashboard') {
           navigate('/adminPortal')
         }
         if (location.pathname === '/adminPortal') {
-          navigate('/dashboard')
+          navigate('/investors/dashboard')
         }
       }}
     >

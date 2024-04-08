@@ -2,8 +2,8 @@ import React from 'react'
 import editUserName from '../../../assets/edit-user-name.png'
 import epochToTime from '../../utils/epochToTime'
 import TradeHistoryPopup from './TradeHistoryPopup'
-import { toggleInvestorStatus } from '../../../backend/api'
-import { changeNameInvestor } from '../../../backend/api'
+import { toggleUserStatus } from '../../../backend/api'
+import { changeNameUser } from '../../../backend/api'
 
 export function calculateUserInvestment(tradeHistory, investorAuthId) {
   const allTrades = tradeHistory[investorAuthId]
@@ -89,7 +89,7 @@ export function InvestorsTable({
     // Access the input element directly using its ID and retrieve its value
     const inputElement = document.getElementById(`investor_name_${investorAuthId}`)
     const inputValue = inputElement.value
-    await changeNameInvestor(investorAuthId, inputValue)
+    await changeNameUser(investorAuthId, inputValue)
     setInvestorDetail((currentItems) =>
       currentItems.map((item) =>
         item.auth_id === investorAuthId ? { ...item, name: inputValue } : item
@@ -186,7 +186,7 @@ export function InvestorsTable({
                   className="btn btn-ghost btn-xs text-red-500 font-montserrat"
                   onClick={async () => {
                     const blockData = investor.blocked ? false : true
-                    await toggleInvestorStatus({
+                    await toggleUserStatus({
                       auth_id: investor.auth_id,
                       block: blockData,
                     })
