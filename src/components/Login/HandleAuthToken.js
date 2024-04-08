@@ -10,9 +10,13 @@ export default async function HandleAuthToken(walletAddress, navigate) {
   }
 
   if (result.success === true) {
-    if (result.data.message.user_type === 'investor') {
+    if (result.data.message.user_type === 'investor' && result.data.message.user_type === 'both') {
       await backendLogin()
-      navigate('/investors/dashboard')
+      navigate('/investors')
+    }
+    if (result.data.message.user_type === 'metaworker') {
+      await backendLogin()
+      navigate('/metaworkers')
     }
     if (result.data.message.user_type === 'admin') {
       await backendLogin()

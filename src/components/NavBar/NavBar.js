@@ -37,9 +37,12 @@ export default function NavBar({
         <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">Registration</h1>
       )
     }
-    if (location.pathname === '/investors/dashboard') {
+    if (location.pathname === '/investors') {
+      return <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">Investor</h1>
+    }
+    if (location.pathname === '/metaworkers') {
       return (
-        <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">User Portal</h1>
+        <h1 className="font-montserrat text-lg/5 lg:text-3xl text-accent pl-2.5">MetaWorker</h1>
       )
     }
     if (location.pathname === '/adminPortal') {

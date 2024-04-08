@@ -24,8 +24,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Login />} />
-      <Route path="metaworkers/dashboard" element={<MetaworkersDashboard />} />
-      <Route path="investors/dashboard" element={<InvestorsDashboard />} />
+      <Route path="metaworkers" element={<MetaworkersDashboard />} />
+      <Route path="investors" element={<InvestorsDashboard />} />
       <Route path="adminPortal" element={<AdminPortal />} />
       <Route path="createAuthToken" element={<CreateAuthToken />} />
     </Route>

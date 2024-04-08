@@ -13,7 +13,7 @@ export default function AuthTokenButton({ walletAddress }) {
   const dispatch = useDispatch()
   const location = useLocation()
 
-  const isVisible = location.pathname === '/investors/dashboard' || location.pathname === '/adminPortal'
+  const isVisible = location.pathname === '/investors' || location.pathname === '/adminPortal'
 
   return (
     <button

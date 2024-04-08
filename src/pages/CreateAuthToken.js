@@ -28,7 +28,7 @@ export default function CreateAuthToken() {
       const result = await userDetails(accountAddress)
 
       if (result.data.message.user_type === 'investor') {
-        navigate('/investors/dashboard')
+        navigate('/investors')
       }
 
       if (result.data.message.user_type === 'admin') {
@@ -210,7 +210,12 @@ export default function CreateAuthToken() {
               className="btn btn-accent btn-md font-montserrat text-base-100 mt-4 px-10"
               onClick={() => {
                 window.open(`https://app.dappflow.org/explorer/transaction/${nftTxnId}`, '_blank')
-                navigate('/investors/dashboard')
+                if (selectedUserType === 'investors' && selectedUserType === 'both') {
+                  navigate('/investors')
+                }
+                if (selectedUserType === 'metaworker') {
+                  navigate('/metaworkers')
+                }
               }}
             >
               View
