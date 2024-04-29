@@ -210,7 +210,7 @@ export default function CreateAuthToken() {
               className="btn btn-accent btn-md font-montserrat text-base-100 mt-4 px-10"
               onClick={() => {
                 window.open(`https://app.dappflow.org/explorer/transaction/${nftTxnId}`, '_blank')
-                if (selectedUserType === 'investors' && selectedUserType === 'both') {
+                if (selectedUserType === 'investor' || selectedUserType === 'both') {
                   navigate('/investors')
                 }
                 if (selectedUserType === 'metaworker') {

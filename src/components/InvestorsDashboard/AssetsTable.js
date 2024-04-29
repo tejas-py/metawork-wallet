@@ -1,5 +1,6 @@
 import React from 'react'
 import { userDetails } from '../../backend/api'
+import SkeletonLoading from './SkeletonLoading'
 import TradeHistoryPopup from './TradeHistoryPopup'
 import YieldPopup from './YieldPopup'
 import TableStats from './TableStats'
@@ -11,6 +12,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
   const [assets, setAssets] = React.useState([])
   const [investorYield, setInvestorYield] = React.useState([])
   const [filteredAssets] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
   const [sortConfig] = React.useState({ key: null, direction: 'ascending' })
 
   React.useEffect(() => {
@@ -31,6 +33,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
         const res = await userDetails(accountAddress)
         const allYield = res.data.total_yield
         setInvestorYield(allYield)
+        setIsLoading(false)
       }
     }
     // Call fetchData for initial load
@@ -66,91 +69,98 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
     }
   }
 
-  return (
-    <div className="flex flex-col min-h-screen justify-center items-center pb-40">
-      <TableStats userAssets={assets} yieldHistory={investorYield} />
-      <div className="overflow-x-auto relative my-20 border rounded-md shadow-md">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr className="font-montserrat">
-              <th>Bonds</th>
-              <th>Investment</th>
-              <th>Yield</th>
-              <th>Trade</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedItems.map((asset, index) => (
-              <tr key={index}>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-7 h-7 lg:w-16 lg:h-16">
-                        <img src={assetLogo(asset.userAsset)} alt="Asset Logo" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{asset.userAsset}</div>
-                      <div title="Asset Balance" className="text-sm opacity-50">
-                        {asset.balance}
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  ${asset.totalInvestment.toFixed(2)}
-                  <br />
-                  <span title="Average Asset Price" className="badge badge-ghost badge-sm">
-                    ${asset.avgAssetPrice.toFixed(2)}
-                  </span>
-                </td>
-                {/* 3 */}
-                <th>
-                  <button
-                    className="btn btn-ghost btn-xs"
-                    onClick={() => document.getElementById(`yield_${index}`).showModal()}
-                  >
-                    View
-                  </button>
-                  <dialog id={`yield_${index}`} className="modal">
-                    <div className="modal-box">
-                      <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                          ✕
-                        </button>
-                      </form>
-                      <h3 className="font-montserrat text-lg text-center">Yield</h3>
-                      <YieldPopup yieldHistory={investorYield} currentAssetName={asset.userAsset} />
-                    </div>
-                  </dialog>
-                </th>
-                <th>
-                  <button
-                    className="btn btn-ghost btn-xs"
-                    onClick={() => document.getElementById(`trade_history_${index}`).showModal()}
-                  >
-                    View
-                  </button>
-                  <dialog id={`trade_history_${index}`} className="modal">
-                    <div className="modal-box">
-                      <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                          ✕
-                        </button>
-                      </form>
-                      <h3 className="font-montserrat text-lg text-center">TRADE HISTORY</h3>
-                      <TradeHistoryPopup userAsset={asset} />
-                    </div>
-                  </dialog>
-                </th>
+  if (isLoading === true) {
+    return <SkeletonLoading />
+  }
+  if (isLoading === false) {
+    return (
+      <div className="flex flex-col min-h-screen justify-center items-center pb-40">
+        <TableStats userAssets={assets} yieldHistory={investorYield} />
+        <div className="overflow-x-auto relative my-20 border rounded-md shadow-md">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr className="font-montserrat">
+                <th>Bonds</th>
+                <th>Investment</th>
+                <th>Yield</th>
+                <th>Trade</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {sortedItems.map((asset, index) => (
+                <tr key={index}>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-7 h-7 lg:w-16 lg:h-16">
+                          <img src={assetLogo(asset.userAsset)} alt="Asset Logo" />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold">{asset.userAsset}</div>
+                        <div title="Asset Balance" className="text-sm opacity-50">
+                          {asset.balance}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    ${asset.totalInvestment.toFixed(2)}
+                    <br />
+                    <span title="Average Asset Price" className="badge badge-ghost badge-sm">
+                      ${asset.avgAssetPrice.toFixed(2)}
+                    </span>
+                  </td>
+                  <th>
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      onClick={() => document.getElementById(`yield_${index}`).showModal()}
+                    >
+                      View
+                    </button>
+                    <dialog id={`yield_${index}`} className="modal">
+                      <div className="modal-box">
+                        <form method="dialog">
+                          {/* if there is a button in form, it will close the modal */}
+                          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                            ✕
+                          </button>
+                        </form>
+                        <h3 className="font-montserrat text-lg text-center">Yield</h3>
+                        <YieldPopup
+                          yieldHistory={investorYield}
+                          currentAssetName={asset.userAsset}
+                        />
+                      </div>
+                    </dialog>
+                  </th>
+                  <th>
+                    <button
+                      className="btn btn-ghost btn-xs"
+                      onClick={() => document.getElementById(`trade_history_${index}`).showModal()}
+                    >
+                      View
+                    </button>
+                    <dialog id={`trade_history_${index}`} className="modal">
+                      <div className="modal-box">
+                        <form method="dialog">
+                          {/* if there is a button in form, it will close the modal */}
+                          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                            ✕
+                          </button>
+                        </form>
+                        <h3 className="font-montserrat text-lg text-center">TRADE HISTORY</h3>
+                        <TradeHistoryPopup userAsset={asset} />
+                      </div>
+                    </dialog>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
