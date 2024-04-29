@@ -2,11 +2,11 @@ import axios from 'axios'
 const URL = 'https://devmetawork.securetool.company'
 // const URL = 'http://localhost:8000'
 
-export const createInvestor = async (info) => {
+export const createUser = async (info) => {
   const data = JSON.stringify(info)
   const config = {
     method: 'post',
-    url: `${URL}/user/investor/create/`,
+    url: `${URL}/user/create/`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -25,7 +25,7 @@ export const createInvestor = async (info) => {
     } else {
       let returnRes = {
         success: false,
-        data: { message: 'Error creating investor' },
+        data: { message: 'Error creating user' },
       }
       return returnRes
     }
@@ -38,10 +38,10 @@ export const createInvestor = async (info) => {
   }
 }
 
-export const investorDetails = async (wallet_address) => {
+export const userDetails = async (wallet_address) => {
   const config = {
     method: 'get',
-    url: `${URL}/user/investor/?wallet_address=${wallet_address}`,
+    url: `${URL}/user/?wallet_address=${wallet_address}`,
   }
 
   try {
@@ -69,10 +69,10 @@ export const investorDetails = async (wallet_address) => {
   }
 }
 
-export const allInvestorsDetails = async () => {
+export const allUsersDetails = async () => {
   const config = {
     method: 'get',
-    url: `${URL}/user/investors/`,
+    url: `${URL}/user/`,
   }
 
   try {
@@ -162,11 +162,11 @@ export const allInvestorsTotalYield = async () => {
   }
 }
 
-export const loginInvestor = async (authId) => {
+export const loginUser = async (authId) => {
   const data = JSON.stringify({ auth_id: authId })
   const config = {
     method: 'patch',
-    url: `${URL}/user/investor/login/`,
+    url: `${URL}/user/login/`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -185,7 +185,7 @@ export const loginInvestor = async (authId) => {
     } else {
       let returnRes = {
         success: false,
-        data: { message: 'Error creating investor' },
+        data: { message: 'Error logging in user' },
       }
       return returnRes
     }
@@ -198,11 +198,11 @@ export const loginInvestor = async (authId) => {
   }
 }
 
-export const changeNameInvestor = async (authId, name) => {
+export const changeNameUser = async (authId, name) => {
   const data = JSON.stringify({ auth_id: authId, name: name })
   const config = {
     method: 'patch',
-    url: `${URL}/user/investor/change_name/`,
+    url: `${URL}/user/change_name/`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -221,7 +221,7 @@ export const changeNameInvestor = async (authId, name) => {
     } else {
       let returnRes = {
         success: false,
-        data: { message: 'Error creating investor' },
+        data: { message: 'Error changing the user name' },
       }
       return returnRes
     }
@@ -234,11 +234,11 @@ export const changeNameInvestor = async (authId, name) => {
   }
 }
 
-export const toggleInvestorStatus = async (info) => {
+export const toggleUserStatus = async (info) => {
   const data = JSON.stringify(info)
   const config = {
     method: 'patch',
-    url: `${URL}/user/investor/block/`,
+    url: `${URL}/user/block/`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -257,7 +257,7 @@ export const toggleInvestorStatus = async (info) => {
     } else {
       let returnRes = {
         success: false,
-        data: { message: 'Error creating investor' },
+        data: { message: 'Error changing the status for the user' },
       }
       return returnRes
     }

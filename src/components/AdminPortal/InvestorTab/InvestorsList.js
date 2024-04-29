@@ -1,8 +1,8 @@
-import { allInvestorsDetails } from '../../../backend/api'
+import { allUsersDetails } from '../../../backend/api'
 
 export default async function InvestorsList() {
   // fetch the investors list from the api
-  const allInvestors = (await allInvestorsDetails()).data.message
+  const allInvestors = (await allUsersDetails()).data.message
 
   // Filter out 'admin' users and keep only 'investor' users
   const investors = allInvestors.filter((investor) => investor.user_type === 'investor')
