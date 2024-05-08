@@ -5,7 +5,9 @@ export default async function InvestorsList() {
   const allInvestors = (await allUsersDetails()).data.message
 
   // Filter out 'admin' users and keep only 'investor' users
-  const investors = allInvestors.filter((investor) => investor.user_type === 'investor')
+  const investors = allInvestors.filter(
+    (investor) => investor.user_type === 'investor' || investor.user_type === 'both'
+  )
 
   const blockInvestorsData = investors.map((investor) => ({
     auth_id: investor.auth_id,

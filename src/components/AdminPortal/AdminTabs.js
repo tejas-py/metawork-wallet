@@ -8,7 +8,7 @@ export default function AdminTab() {
   const [selectedTab, setSelectedTab] = useState('Investors')
 
   return (
-    <div role="tablist" className="tabs tabs-lifted relative top-24 mx-6 mb-11">
+    <div role="tablist" className="tabs tabs-lifted relative top-24 mb-11 w-screen">
       <input
         type="radio"
         name="my_tabs_2"
@@ -18,7 +18,7 @@ export default function AdminTab() {
         checked={selectedTab === 'Assets'}
         onChange={() => setSelectedTab('Assets')}
       />
-      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box py-6">
         <AssetDashboard />
       </div>
 
@@ -31,7 +31,7 @@ export default function AdminTab() {
         checked={selectedTab === 'Investors'}
         onChange={() => setSelectedTab('Investors')}
       />
-      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box py-6">
         <InvestorDashboard />
       </div>
 
@@ -44,7 +44,7 @@ export default function AdminTab() {
         checked={selectedTab === 'Disburse'}
         onChange={() => setSelectedTab('Disburse')}
       />
-      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box py-6">
         Tab content 3
       </div>
 
@@ -57,7 +57,7 @@ export default function AdminTab() {
         checked={selectedTab === 'Analytics'}
         onChange={() => setSelectedTab('Analytics')}
       />
-      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box py-6">
         <AnalyticsDashboard />
       </div>
 
@@ -70,7 +70,7 @@ export default function AdminTab() {
         checked={selectedTab === 'MetaWorkers'}
         onChange={() => setSelectedTab('MetaWorkers')}
       />
-      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+      <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box py-6">
         Tab content 5
       </div>
     </div>

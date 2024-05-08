@@ -64,7 +64,6 @@ function TradeHistory({ tradeHistory }) {
 
 export default function TradeHistoryPopup({ tradeHistory, investorAuthId }) {
   const tradeHistoryByInvestor = tradeHistory[investorAuthId]
-
   return (
     <dialog id={`trade_history_${investorAuthId}`} className="modal">
       <div className="modal-box">

@@ -72,7 +72,7 @@ export const userDetails = async (wallet_address) => {
 export const allUsersDetails = async () => {
   const config = {
     method: 'get',
-    url: `${URL}/user/`,
+    url: `${URL}/user/all`,
   }
 
   try {

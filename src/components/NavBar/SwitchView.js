@@ -11,12 +11,14 @@ export default function SwitchView({ accountAddress }) {
 
   const isVisible =
     (userType === 'both' || userType === 'admin') &&
-    (location.pathname === '/investors' || location.pathname === '/metaworkers')
+    (location.pathname === '/investors' ||
+      location.pathname === '/metaworkers' ||
+      location.pathname === '/adminPortal')
 
   React.useEffect(() => {
     async function fetchUserType() {
       const connectedUserDetails = await userDetails(accountAddress)
-      console.log('USER DETAILS: ', connectedUserDetails.data.message)
+
       if (connectedUserDetails.success === true) {
         const user_type = connectedUserDetails.data.message.user_type
         setUserType(user_type)

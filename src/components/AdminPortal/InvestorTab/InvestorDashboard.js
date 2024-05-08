@@ -29,14 +29,14 @@ export default function InvestorDashboard() {
 
       allInvestorsTrades.forEach((trade) => {
         // Check if the investor_id already exists in allAuthId
-        if (!allAuthId.hasOwnProperty(trade.investors_id)) {
+        if (!allAuthId.hasOwnProperty(trade.user_id)) {
           // If not, initialize it with an empty array
-          allAuthId[trade.investors_id] = []
+          allAuthId[trade.user_id] = []
         }
 
-        if (allAuthId.hasOwnProperty(trade.investors_id)) {
-          if (allAuthId[trade.investors_id].length === 0) {
-            allAuthId[trade.investors_id] = [
+        if (allAuthId.hasOwnProperty(trade.user_id)) {
+          if (allAuthId[trade.user_id].length === 0) {
+            allAuthId[trade.user_id] = [
               {
                 asset: trade.asset_name,
                 price: trade.price,
@@ -46,9 +46,9 @@ export default function InvestorDashboard() {
               },
             ]
           }
-          if (allAuthId[trade.investors_id].length >= 1) {
-            const indexNumber = allAuthId[trade.investors_id].length
-            allAuthId[trade.investors_id].splice(indexNumber, 0, {
+          if (allAuthId[trade.user_id].length >= 1) {
+            const indexNumber = allAuthId[trade.user_id].length
+            allAuthId[trade.user_id].splice(indexNumber, 0, {
               asset: trade.asset_name,
               price: trade.price,
               time: trade.time,
@@ -68,14 +68,14 @@ export default function InvestorDashboard() {
       const allAuthId = {}
       allInvestorsYield.forEach((trade) => {
         // Check if the investor_id already exists in allAuthId
-        if (!allAuthId.hasOwnProperty(trade.investors_id)) {
+        if (!allAuthId.hasOwnProperty(trade.user_id)) {
           // If not, initialize it with an empty array
-          allAuthId[trade.investors_id] = []
+          allAuthId[trade.user_id] = []
         }
 
-        if (allAuthId.hasOwnProperty(trade.investors_id)) {
-          if (allAuthId[trade.investors_id].length === 0) {
-            allAuthId[trade.investors_id] = [
+        if (allAuthId.hasOwnProperty(trade.user_id)) {
+          if (allAuthId[trade.user_id].length === 0) {
+            allAuthId[trade.user_id] = [
               {
                 asset: trade.asset_name,
                 amount: trade.units,
@@ -83,9 +83,9 @@ export default function InvestorDashboard() {
               },
             ]
           }
-          if (allAuthId[trade.investors_id].length >= 1) {
-            const indexNumber = allAuthId[trade.investors_id].length
-            allAuthId[trade.investors_id].splice(indexNumber, 0, {
+          if (allAuthId[trade.user_id].length >= 1) {
+            const indexNumber = allAuthId[trade.user_id].length
+            allAuthId[trade.user_id].splice(indexNumber, 0, {
               asset: trade.asset_name,
               amount: trade.units,
               time: trade.time,

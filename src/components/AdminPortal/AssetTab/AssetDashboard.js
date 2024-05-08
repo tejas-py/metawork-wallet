@@ -55,7 +55,7 @@ export default function AssetDashboard() {
 
   function Stats() {
     return (
-      <div className="stats stats-horizontal shadow-lg bg-white font-montserrat">
+      <div className="stats stats-horizontal shadow-lg bg-white font-montserrat text-xs lg:text-xl">
         <div className="stat place-items-center">
           <div className="stat-title">Assets</div>
           <div className="stat-value">2</div>

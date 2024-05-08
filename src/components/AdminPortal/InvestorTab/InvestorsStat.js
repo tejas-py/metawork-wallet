@@ -30,7 +30,7 @@ export default function InvestorStat({
   }
 
   return (
-    <div className="stats stats-horizontal font-montserrat shadow-md bg-white">
+    <div className="stats stats-horizontal font-montserrat shadow-md bg-white w-screen text-xs lg:text-xl">
       <div className="stat">
         <div className="stat-title">All Investors</div>
         <div className="stat-value">{investorData.totalNumberOfInvestors}</div>

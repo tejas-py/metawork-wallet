@@ -3,7 +3,7 @@ import React from 'react'
 export default function AnalyticsDashboard() {
   function Stats() {
     return (
-      <div className="stats stats-horizontal font-montserrat shadow-md bg-white">
+      <div className="stats stats-horizontal font-montserrat shadow-md bg-white w-screen text-xs lg:text-xl">
         <div className="stat">
           <div className="stat-title">Active Users Monthly</div>
           <div className="stat-value">12</div>

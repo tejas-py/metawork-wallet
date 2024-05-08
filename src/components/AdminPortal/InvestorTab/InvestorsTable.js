@@ -7,47 +7,50 @@ import { changeNameUser } from '../../../backend/api'
 
 export function calculateUserInvestment(tradeHistory, investorAuthId) {
   const allTrades = tradeHistory[investorAuthId]
+  if (allTrades) {
+    // sort the trade history buy the time
+    const sortedTradeHistory = allTrades.sort((a, b) => a.time - b.time)
 
-  // sort the trade history buy the time
-  const sortedTradeHistory = allTrades.sort((a, b) => a.time - b.time)
-
-  // caluclate balance and the average asset price
-  let balance = 0.0
-  let avgAssetPrice = 0.0
-  sortedTradeHistory.forEach((trade) => {
-    if (trade.trade_type === 'buy') {
-      if (balance === 0.0) {
-        balance = trade.amount
-        avgAssetPrice = (trade.price * trade.amount) / balance
-      } else {
-        const newBuyBalance = balance + trade.amount
-        const tradeAmount = trade.price * trade.amount
-        avgAssetPrice = (avgAssetPrice * balance + tradeAmount) / newBuyBalance
-        balance = newBuyBalance
+    // caluclate balance and the average asset price
+    let balance = 0.0
+    let avgAssetPrice = 0.0
+    sortedTradeHistory.forEach((trade) => {
+      if (trade.trade_type === 'buy') {
+        if (balance === 0.0) {
+          balance = trade.amount
+          avgAssetPrice = (trade.price * trade.amount) / balance
+        } else {
+          const newBuyBalance = balance + trade.amount
+          const tradeAmount = trade.price * trade.amount
+          avgAssetPrice = (avgAssetPrice * balance + tradeAmount) / newBuyBalance
+          balance = newBuyBalance
+        }
+      } else if (trade.trade_type === 'sell') {
+        const newSellBalance = balance - trade.amount
+        if (newSellBalance === 0.0) {
+          avgAssetPrice = 0.0
+        } else {
+          avgAssetPrice = (avgAssetPrice * balance - avgAssetPrice * trade.amount) / newSellBalance
+        }
+        balance = newSellBalance
       }
-    } else if (trade.trade_type === 'sell') {
-      const newSellBalance = balance - trade.amount
-      if (newSellBalance === 0.0) {
-        avgAssetPrice = 0.0
-      } else {
-        avgAssetPrice = (avgAssetPrice * balance - avgAssetPrice * trade.amount) / newSellBalance
-      }
-      balance = newSellBalance
-    }
-  })
-  const totalInvestment = balance * avgAssetPrice
-  return totalInvestment.toFixed(1)
+    })
+    const totalInvestment = balance * avgAssetPrice
+    return totalInvestment.toFixed(1)
+  }
 }
 
 export function calculateUserYield(investorsYield, investorAuthId) {
   const yieldHistory = investorsYield[investorAuthId]
 
   let userYield = 0
-  yieldHistory.forEach((history) => {
-    const yieldAmount = +history.amount
-    userYield += yieldAmount
-  })
-  return userYield
+  if (yieldHistory) {
+    yieldHistory.forEach((history) => {
+      const yieldAmount = +history.amount
+      userYield += yieldAmount
+    })
+    return userYield
+  }
 }
 
 export function InvestorsTable({
@@ -106,8 +109,8 @@ export function InvestorsTable({
   }
 
   return (
-    <div className="overflow-x-auto border rounded-md shadow-lg mt-12">
-      <table className="table">
+    <div className="overflow-x-auto border rounded-md shadow-lg mt-12 w-screen h-auto">
+      <table className="table text-xs lg:text-xl">
         {/* head */}
         <thead className="font-montserrat">
           <tr>
