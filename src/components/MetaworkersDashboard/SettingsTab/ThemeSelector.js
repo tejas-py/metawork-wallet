@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function ThemeSelector() {
   return (
-    <div className="dropdown mb-72">
+    <div className="dropdown dropdown-bottom flex flex-col justify-center">
       <div tabIndex={0} role="button" className="btn m-1">
         Select Theme
         <svg
