@@ -2,6 +2,7 @@ import React from 'react'
 import PeraWallet from '../components/PeraWallet/PeraWallet.js'
 import NavBar from '../components/NavBar/NavBar.js'
 import AssetsTable from '../components/InvestorsDashboard/AssetsTable.js'
+import InvestorsTab from '../components/InvestorsDashboard/InvestorsTab.js'
 
 export default function InvestorsDashboard() {
   const [, accountAddress, isConnectedToPeraWallet, handleConnectWalletClick] = PeraWallet()
@@ -13,7 +14,7 @@ export default function InvestorsDashboard() {
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         handleDisconnectWalletClick={handleConnectWalletClick}
       />
-      <AssetsTable
+      <InvestorsTab
         isConnectedToPeraWallet={isConnectedToPeraWallet}
         accountAddress={accountAddress}
       />

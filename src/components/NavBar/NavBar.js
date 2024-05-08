@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 import SwitchView from './SwitchView'
 import AuthTokenButton from './AuthTokenButton'
 import WalletAddressButton from './WalletAddressButton'
-import { userDetails } from '../../backend/api'
 
 export default function NavBar({
   accountAddress,
@@ -11,22 +10,6 @@ export default function NavBar({
   handleDisconnectWalletClick,
 }) {
   const location = useLocation()
-  const [isAdmin, setIsAdmin] = React.useState(false)
-
-  React.useEffect(() => {
-    async function fetchAdminStatus() {
-      const connectedUserDetails = await userDetails(accountAddress)
-      if (connectedUserDetails.success === true) {
-        const userType = connectedUserDetails.data.message.user_type
-        setIsAdmin(userType === 'admin')
-      } else {
-        setIsAdmin(false)
-      }
-    }
-    if (accountAddress) {
-      fetchAdminStatus()
-    }
-  }, [accountAddress])
 
   function NavHeading() {
     if (location.pathname === '/') {
@@ -53,13 +36,13 @@ export default function NavBar({
   }
 
   return (
-    <div className="navbar absolute bg-base-100 rounded-3xl drop-shadow-md transition duration-500 hover:drop-shadow-xl">
+    <div className="navbar absolute bg-base-100 rounded-3xl drop-shadow-md transition duration-500 hover:drop-shadow-xl w-screen">
       <div className="flex-1">
         <NavHeading />
       </div>
       <div className="flex-none">
-        <ul className="flex flex-row justify-evenly w-72 lg:w-80">
-          <SwitchView isAdmin={isAdmin} />
+        <ul className="flex flex-row justify-evenly w-60 lg:w-80">
+          <SwitchView accountAddress={accountAddress} />
           <AuthTokenButton walletAddress={accountAddress} />
           <WalletAddressButton
             accountAddress={accountAddress}

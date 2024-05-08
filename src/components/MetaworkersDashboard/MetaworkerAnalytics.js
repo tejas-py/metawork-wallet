@@ -1,7 +1,7 @@
 import React from 'react'
 import ApexCharts from 'apexcharts'
 
-export default function AssetDashboard() {
+export default function MetaWorkerAnalytics() {
   function UserAssetTable() {
     return (
       <div className="overflow-x-auto">
@@ -10,9 +10,8 @@ export default function AssetDashboard() {
           <thead className="font-montserrat">
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Total Invested</th>
-              <th>Current Invested</th>
+              <th>Date/Time</th>
+              <th>Earnings</th>
             </tr>
           </thead>
           <tbody>
@@ -22,14 +21,9 @@ export default function AssetDashboard() {
               <td>
                 <div>
                   <div className="font-bold">Tejas</div>
-                  <div className="text-sm opacity-50 font-montserrat">
-                    {'34XRFBWVM2HGSVOVNKLCYJBLWUUY3YJ2PCIHKAF4E7AXFBYGJR65H5XD6E'.slice(0, 8) +
-                      '...'}
-                  </div>
                 </div>
               </td>
-              <td>$1200</td>
-              <td>$600</td>
+              <td>$1</td>
             </tr>
           </tbody>
         </table>
@@ -57,7 +51,7 @@ export default function AssetDashboard() {
     return (
       <div className="stats stats-horizontal shadow-lg bg-white font-montserrat">
         <div className="stat place-items-center">
-          <div className="stat-title">Assets</div>
+          <div className="stat-title">Projects</div>
           <div className="stat-value">2</div>
           <div className="stat-desc">Genopets | Hunter</div>
         </div>
@@ -68,8 +62,7 @@ export default function AssetDashboard() {
         >
           <div className="stat-title">Genopets</div>
           <StatModal id={'genopets'} tiitle={'Genopets Investors'} />
-          <div className="stat-value text-secondary">$1,200</div>
-          <div className="stat-desc text-red-600">↘︎ 90 (14%)</div>
+          <div className="stat-value text-secondary">$12</div>
         </div>
 
         <div
@@ -78,8 +71,7 @@ export default function AssetDashboard() {
         >
           <div className="stat-title">Hunter</div>
           <StatModal id={'hunter'} tiitle={'Hunter Investors'} />
-          <div className="stat-value text-secondary">$1,200</div>
-          <div className="stat-desc text-red-600">↘︎ 90 (14%)</div>
+          <div className="stat-value text-secondary">$13</div>
         </div>
       </div>
     )
@@ -122,8 +114,8 @@ export default function AssetDashboard() {
       },
     }
 
-    if (document.querySelector('#chart')) {
-      const chart = new ApexCharts(document.querySelector('#chart'), options)
+    if (document.querySelector('#metawork_analytics')) {
+      const chart = new ApexCharts(document.querySelector('#metawork_analytics'), options)
       chart.render()
     }
   }
@@ -131,7 +123,7 @@ export default function AssetDashboard() {
   return (
     <div className="flex flex-col justify-center">
       <Stats />
-      <div id="chart" style={{ width: '90vw', margin: '35px auto', stacked: true }}>
+      <div id="metawork_analytics" style={{ width: '90vw', margin: '35px auto', stacked: true }}>
         <AreaGraph />
       </div>
     </div>

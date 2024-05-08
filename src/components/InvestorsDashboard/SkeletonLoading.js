@@ -121,7 +121,7 @@ export default function SkeletonLoading() {
     )
   }
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center pb-40">
+    <div className="flex flex-col justify-center">
       <StatSkeleton />
       <div className="overflow-x-auto relative my-20 border rounded-md shadow-md">
         <TableSkeleton />

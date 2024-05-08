@@ -33,6 +33,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
         const res = await userDetails(accountAddress)
         const allYield = res.data.total_yield
         setInvestorYield(allYield)
+        console.log('DONE')
         setIsLoading(false)
       }
     }
@@ -74,7 +75,7 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
   }
   if (isLoading === false) {
     return (
-      <div className="flex flex-col min-h-screen justify-center items-center pb-40">
+      <div className="flex flex-col justify-center">
         <TableStats userAssets={assets} yieldHistory={investorYield} />
         <div className="overflow-x-auto relative my-20 border rounded-md shadow-md">
           <table className="table">

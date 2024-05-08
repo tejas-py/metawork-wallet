@@ -1,6 +1,6 @@
 import axios from 'axios'
-const URL = 'https://devmetawork.securetool.company'
-// const URL = 'http://localhost:8000'
+// const URL = 'https://devmetawork.securetool.company'
+const URL = 'http://localhost:8000'
 
 export const createUser = async (info) => {
   const data = JSON.stringify(info)
