@@ -27,8 +27,15 @@ export default function CreateAuthToken() {
     const verifyUser = async () => {
       const result = await userDetails(accountAddress)
 
-      if (result.data.message.user_type === 'investor') {
+      if (
+        result.data.message.user_type === 'investor' ||
+        result.data.message.user_type === 'both'
+      ) {
         navigate('/investors')
+      }
+
+      if (result.data.message.user_type === 'metaworker') {
+        navigate('/metaworkers')
       }
 
       if (result.data.message.user_type === 'admin') {
@@ -195,6 +202,7 @@ export default function CreateAuthToken() {
                     holding: null,
                     user_type: selectedUserType,
                   }
+                  console.log('USER  INFO:', userInfo)
                   await createUser(userInfo)
                 }
                 dispatch(toggleAppLoading(false))

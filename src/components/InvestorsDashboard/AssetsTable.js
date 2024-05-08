@@ -33,7 +33,6 @@ export default function AssetsTable({ isConnectedToPeraWallet, accountAddress })
         const res = await userDetails(accountAddress)
         const allYield = res.data.total_yield
         setInvestorYield(allYield)
-        console.log('DONE')
         setIsLoading(false)
       }
     }
