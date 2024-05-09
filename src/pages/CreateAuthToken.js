@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import { toggleAppLoading } from '../store/slices/LoadinAndNotifSlice.js'
 import MintMyNFT from '../components/CreateAuthToken/MintMyNFT.js'
 import { authTokenInfo } from '../blockchain/accounts.js'
@@ -176,7 +175,6 @@ export default function CreateAuthToken() {
           </>
         )}
       </div>
-      <DevTool control={control} />
     </>
   )
 }
