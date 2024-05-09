@@ -6,7 +6,7 @@ export const createUser = async (info) => {
   const data = JSON.stringify(info)
   const config = {
     method: 'post',
-    url: `${URL}/user/create/`,
+    url: `${URL}/user/create`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -41,7 +41,7 @@ export const createUser = async (info) => {
 export const userDetails = async (wallet_address) => {
   const config = {
     method: 'get',
-    url: `${URL}/user/?wallet_address=${wallet_address}`,
+    url: `${URL}/user?wallet_address=${wallet_address}`,
   }
 
   try {
@@ -166,7 +166,7 @@ export const loginUser = async (authId) => {
   const data = JSON.stringify({ auth_id: authId })
   const config = {
     method: 'patch',
-    url: `${URL}/user/login/`,
+    url: `${URL}/user/login`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -202,7 +202,7 @@ export const changeNameUser = async (authId, name) => {
   const data = JSON.stringify({ auth_id: authId, name: name })
   const config = {
     method: 'patch',
-    url: `${URL}/user/change_name/`,
+    url: `${URL}/user/change_name`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -238,7 +238,7 @@ export const toggleUserStatus = async (info) => {
   const data = JSON.stringify(info)
   const config = {
     method: 'patch',
-    url: `${URL}/user/block/`,
+    url: `${URL}/user/block`,
     headers: {
       'Content-Type': 'application/json',
     },

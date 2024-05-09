@@ -77,6 +77,7 @@ export default async function getUserAssets(accountAddress) {
   for (let i = 0; i < NumberOfAssets; i++) {
     const tradeHistory = trades[userAssets[i]]
     const [balance, avgAssetPrice] = calculateBalanceAvgPrice(tradeHistory)
+
     const userAssetData = {
       userAsset: userAssets[i],
       balance,

@@ -35,8 +35,8 @@ export function calculateUserInvestment(tradeHistory, investorAuthId) {
         balance = newSellBalance
       }
     })
-    const totalInvestment = balance * avgAssetPrice
-    return totalInvestment.toFixed(1)
+    const totalInvestment = (balance * avgAssetPrice).toFixed(1)
+    return totalInvestment || 0
   }
 }
 

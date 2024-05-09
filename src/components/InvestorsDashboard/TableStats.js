@@ -15,7 +15,8 @@ export default function TableStats({ userAssets, yieldHistory }) {
       const assetInvestment = userAssets[i].totalInvestment
       investment += assetInvestment
     }
-    return investment.toFixed(2)
+    investment = investment.toFixed(2)
+    return investment || 0
   }
 
   return (

@@ -36,7 +36,7 @@ export default function NavBar({
   }
 
   return (
-    <div className="navbar absolute bg-base-100 rounded-3xl drop-shadow-md transition duration-500 hover:drop-shadow-xl w-screen">
+    <div className="navbar fixed bg-base-100 rounded-3xl drop-shadow-md transition duration-500 hover:drop-shadow-xl w-screen">
       <div className="flex-1">
         <NavHeading />
       </div>

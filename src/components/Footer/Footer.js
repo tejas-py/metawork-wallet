@@ -3,7 +3,7 @@ import logo from '../../assets/logo-nobg.png'
 
 export default function Footer() {
   return (
-    <footer class="footer absolute place-content-evenly bottom-0 bg-primary text-neutral h-12 w-screen">
+    <footer class="footer fixed place-content-evenly bottom-0 bg-primary text-neutral h-12 w-screen">
       <div class="items-center grid-flow-col self-center">
         <img
           src={logo}
